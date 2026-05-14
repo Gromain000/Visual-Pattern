@@ -1,25 +1,94 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Test Page</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-        html, body {
-            margin: 0;
-            padding: 0;
-            height: 100%;
-        }
-        iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sequence Question</title>
+
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+    }
+
+    body{
+      background:black;
+      overflow:hidden;
+      font-family:Arial, sans-serif;
+    }
+
+    .page{
+      position:relative;
+      width:100vw;
+      height:100vh;
+
+      /* YOUR IMAGE */
+      background-image:url("your-image.jpg");
+
+      background-size:cover;
+      background-position:center;
+      background-repeat:no-repeat;
+    }
+
+    /* CLICKABLE AREAS */
+
+    .click-zone{
+      position:absolute;
+      cursor:pointer;
+    }
+
+    /* A */
+    .option-a{
+      left:4%;
+      top:54%;
+      width:18%;
+      height:8%;
+    }
+
+    /* B */
+    .option-b{
+      left:4%;
+      top:64%;
+      width:18%;
+      height:8%;
+    }
+
+    /* C */
+    .option-c{
+      left:4%;
+      top:74%;
+      width:18%;
+      height:8%;
+    }
+
+    /* Optional hover test */
+    .click-zone:hover{
+      outline:2px solid rgba(255,255,255,0.3);
+    }
+
+  </style>
 </head>
+
 <body>
 
-    <iframe src="Test page .pdf"></iframe>
+  <div class="page">
+
+    <!-- CLICKABLE OPTIONS -->
+
+    <div class="click-zone option-a"
+      onclick="alert('You clicked A')">
+    </div>
+
+    <div class="click-zone option-b"
+      onclick="alert('You clicked B')">
+    </div>
+
+    <div class="click-zone option-c"
+      onclick="alert('You clicked C')">
+    </div>
+
+  </div>
 
 </body>
 </html>
