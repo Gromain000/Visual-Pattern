@@ -1,94 +1,81 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Sequence Question</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <style>
-    *{
-      margin:0;
-      padding:0;
-      box-sizing:border-box;
-    }
+<title>Question</title>
 
-    body{
-      background:black;
-      overflow:hidden;
-      font-family:Arial, sans-serif;
-    }
+<style>
 
-    .page{
-      position:relative;
-      width:100vw;
-      height:100vh;
+body{
+    margin:0;
+    background:black;
+    overflow:hidden;
+}
 
-      /* YOUR IMAGE */
-      background-image:url("your-image.jpg");
+.container{
+    position:relative;
+    width:100vw;
+    height:100vh;
+}
 
-      background-size:cover;
-      background-position:center;
-      background-repeat:no-repeat;
-    }
+img{
+    width:100%;
+    height:100%;
+    object-fit:contain;
+    display:block;
+}
 
-    /* CLICKABLE AREAS */
+/* CLICK AREAS */
 
-    .click-zone{
-      position:absolute;
-      cursor:pointer;
-    }
+.zone{
+    position:absolute;
+    cursor:pointer;
+}
 
-    /* A */
-    .option-a{
-      left:4%;
-      top:54%;
-      width:18%;
-      height:8%;
-    }
+/* A */
+.a{
+    left:4%;
+    top:52%;
+    width:20%;
+    height:8%;
+}
 
-    /* B */
-    .option-b{
-      left:4%;
-      top:64%;
-      width:18%;
-      height:8%;
-    }
+/* B */
+.b{
+    left:4%;
+    top:61%;
+    width:20%;
+    height:8%;
+}
 
-    /* C */
-    .option-c{
-      left:4%;
-      top:74%;
-      width:18%;
-      height:8%;
-    }
+/* C */
+.c{
+    left:4%;
+    top:70%;
+    width:20%;
+    height:8%;
+}
 
-    /* Optional hover test */
-    .click-zone:hover{
-      outline:2px solid rgba(255,255,255,0.3);
-    }
+</style>
 
-  </style>
 </head>
 
 <body>
 
-  <div class="page">
+<div class="container">
 
-    <!-- CLICKABLE OPTIONS -->
+<img src="question.jpg">
 
-    <div class="click-zone option-a"
-      onclick="alert('You clicked A')">
-    </div>
+<div class="zone a" onclick="alert('You clicked A')"></div>
 
-    <div class="click-zone option-b"
-      onclick="alert('You clicked B')">
-    </div>
+<div class="zone b" onclick="alert('Correct Answer')"></div>
 
-    <div class="click-zone option-c"
-      onclick="alert('You clicked C')">
-    </div>
+<div class="zone c" onclick="alert('You clicked C')"></div>
 
-  </div>
+</div>
 
 </body>
 </html>
