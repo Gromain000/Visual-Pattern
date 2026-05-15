@@ -6,46 +6,74 @@
 <title>Sequence Quiz</title>
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
-
-  html, body {
-    height: 100%;
-    background-color: #000;        /* matches the image background → no visible borders */
-  }
-
+  html, body { height: 100%; background-color: #000; }
   body {
     min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    display: flex; justify-content: center; align-items: center;
     padding: 16px;
   }
 
-  .frame {
-    /* Always a perfect square, sized to the smaller side of the viewport */
-    width: min(96vw, 96vh);
-    aspect-ratio: 1 / 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
+  /* Every "page" is hidden by default; only the targeted one shows. */
+  .page { display: none; width: 100%; height: 100%; }
+  #quiz:target, #a:target, #b:target, #c:target {
+    display: flex; justify-content: center; align-items: center;
+  }
+  /* No hash in URL → show the quiz */
+  body:not(:has(.page:target)) #quiz {
+    display: flex; justify-content: center; align-items: center;
   }
 
-  .frame img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;   /* preserves the image exactly — no crop, no distortion */
-    display: block;
-    user-select: none;
-    -webkit-user-drag: none;
+  /* Landing pages — intentionally empty, just black */
+  .landing { width: 100%; min-height: 100vh; background: #000; }
+
+  /* Quiz frame */
+  .frame {
+    position: relative;
+    width: min(96vw, 96vh);
+    aspect-ratio: 1 / 1;
+    display: flex; justify-content: center; align-items: center;
+    overflow: hidden;
   }
+  .frame img {
+    width: 100%; height: 100%; object-fit: contain;
+    display: block; user-select: none; -webkit-user-drag: none;
+    mix-blend-mode: lighten;
+  }
+
+  .hotspot {
+    position: absolute; left: 3%; width: 28%; height: 8.5%;
+    border-radius: 8px; background: transparent; cursor: pointer;
+    text-indent: -9999px; overflow: hidden; border: 0;
+    transition: background-color 0.2s ease, transform 0.15s ease;
+  }
+  .hotspot:hover, .hotspot:focus-visible {
+    background-color: rgba(255, 255, 255, 0.08);
+    transform: translateX(2px); outline: none;
+  }
+  .hotspot-a { top: 70.5%; }
+  .hotspot-b { top: 79.5%; }
+  .hotspot-c { top: 88.5%; }
 </style>
 </head>
 <body>
-  <div class="frame">
-    <img
-      src="https://customer-assets.emergentagent.com/job_5cac3d2d-7b84-4ac9-84b9-84696dbf672e/artifacts/jlifadde_image.jpeg"
-      alt="What comes next in sequence: A, C, F, J, O, _ — A. P  B. Q  C. U"
-    />
-  </div>
+
+  <!-- Quiz -->
+  <section id="quiz" class="page">
+    <div class="frame">
+      <img
+        src="https://customer-assets.emergentagent.com/job_5cac3d2d-7b84-4ac9-84b9-84696dbf672e/artifacts/jlifadde_image.jpeg"
+        alt="What comes next in sequence: A, C, F, J, O, _ — A. P  B. Q  C. U"
+      />
+      <a class="hotspot hotspot-a" href="#a" aria-label="Option A">Option A</a>
+      <a class="hotspot hotspot-b" href="#b" aria-label="Option B">Option B</a>
+      <a class="hotspot hotspot-c" href="#c" aria-label="Option C">Option C</a>
+    </div>
+  </section>
+
+  <!-- Blank landing pages -->
+  <section id="a" class="page landing"></section>
+  <section id="b" class="page landing"></section>
+  <section id="c" class="page landing"></section>
+
 </body>
 </html>
