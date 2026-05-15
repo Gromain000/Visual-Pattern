@@ -1,119 +1,50 @@
-"<!DOCTYPE html>
-<html lang=\"en\">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<meta charset=\"UTF-8\" />
-<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Sequence Quiz</title>
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
 
-  html, body { height: 100%; background-color: #000; }
+  html, body {
+    height: 100%;
+    background-color: #000;        /* matches the image background → no visible borders */
+  }
 
   body {
     min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 12px;
+    padding: 16px;
   }
 
-  /* Hash routing: only the page matching #hash is shown. */
-  .page { display: none; width: 100%; min-height: 100vh; }
-
-  #quiz:target,
-  #a:target,
-  #b:target,
-  #c:target {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
-  /* Default view (no hash) shows the quiz. */
-  body:not(:has(.page:target)) #quiz {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
-  /* Landing pages are intentionally blank — pure black. */
-  .landing { background: #000; }
-
-  /* -----------------------------------------------------------
-     Quiz frame
-     The frame uses the IMAGE's true aspect ratio (1414 x 2000)
-     so percentage-based hotspots map directly onto the image
-     pixels with no letterboxing offset.
-  ------------------------------------------------------------ */
   .frame {
-    position: relative;
-    aspect-ratio: 1414 / 2000;
-    height: min(96vh, calc(96vw * 2000 / 1414));
-    width: auto;
-    max-width: 96vw;
+    /* Always a perfect square, sized to the smaller side of the viewport */
+    width: min(96vw, 96vh);
+    aspect-ratio: 1 / 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     overflow: hidden;
   }
 
   .frame img {
     width: 100%;
     height: 100%;
-    object-fit: fill;        /* frame already matches image ratio, so fill = no distortion */
+    object-fit: contain;   /* preserves the image exactly — no crop, no distortion */
     display: block;
     user-select: none;
     -webkit-user-drag: none;
-    mix-blend-mode: lighten; /* black background blends seamlessly with page */
   }
-
-  /* -----------------------------------------------------------
-     Hotspot positions (measured from the actual image pixels):
-       Option A row : y 50.00% – 52.30%,  x 4.81% – 14.92%
-       Option B row : y 55.15% – 58.80%,  x 4.81% – 15.35%
-       Option C row : y 60.90% – 63.90%,  x 4.74% – 15.06%
-     A small ~1% padding is added on each side for comfortable tap.
-  ------------------------------------------------------------ */
-  .hotspot {
-    position: absolute;
-    left: 3.5%;
-    width: 13%;
-    border-radius: 6px;
-    background: transparent;
-    cursor: pointer;
-    border: 0;
-    text-indent: -9999px;
-    overflow: hidden;
-    transition: background-color 0.2s ease, transform 0.15s ease;
-  }
-  .hotspot:hover,
-  .hotspot:focus-visible {
-    background-color: rgba(255, 255, 255, 0.08);
-    transform: translateX(2px);
-    outline: none;
-  }
-
-  .hotspot-a { top: 49.2%; height: 4.0%; }
-  .hotspot-b { top: 54.4%; height: 5.0%; }
-  .hotspot-c { top: 60.2%; height: 4.4%; }
 </style>
 </head>
 <body>
-
-  <!-- Quiz -->
-  <section id=\"quiz\" class=\"page\" data-testid=\"quiz-page\">
-    <div class=\"frame\">
-      <img
-        src=\"https://customer-assets.emergentagent.com/job_5cac3d2d-7b84-4ac9-84b9-84696dbf672e/artifacts/jlifadde_image.jpeg\"
-        alt=\"What comes next in sequence: A, C, F, J, O, _ — A. P  B. Q  C. U\"
-      />
-      <a class=\"hotspot hotspot-a\" href=\"#a\" data-testid=\"option-a-link\" aria-label=\"Option A\">Option A</a>
-      <a class=\"hotspot hotspot-b\" href=\"#b\" data-testid=\"option-b-link\" aria-label=\"Option B\">Option B</a>
-      <a class=\"hotspot hotspot-c\" href=\"#c\" data-testid=\"option-c-link\" aria-label=\"Option C\">Option C</a>
-    </div>
-  </section>
-
-  <!-- Blank landing pages -->
-  <section id=\"a\" class=\"page landing\" data-testid=\"landing-a\"></section>
-  <section id=\"b\" class=\"page landing\" data-testid=\"landing-b\"></section>
-  <section id=\"c\" class=\"page landing\" data-testid=\"landing-c\"></section>
-
+  <div class="frame">
+    <img
+      src="https://customer-assets.emergentagent.com/job_5cac3d2d-7b84-4ac9-84b9-84696dbf672e/artifacts/jlifadde_image.jpeg"
+      alt="What comes next in sequence: A, C, F, J, O, _ — A. P  B. Q  C. U"
+    />
+  </div>
 </body>
-</html>
