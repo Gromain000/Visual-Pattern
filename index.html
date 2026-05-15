@@ -4,47 +4,69 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Sequence Quiz</title>
+
 <style>
-  * { box-sizing: border-box; margin: 0; padding: 0; }
 
-  html, body {
-    height: 100%;
-    background-color: #000;        /* matches the image background → no visible borders */
-  }
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
 
-  body {
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 16px;
-  }
+html, body{
+    width:100%;
+    height:100%;
+    background:#000000;
+    overflow:hidden;
+}
 
-  .frame {
-    /* Always a perfect square, sized to the smaller side of the viewport */
-    width: min(96vw, 96vh);
-    aspect-ratio: 1 / 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
-  }
+body{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
 
-  .frame img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;   /* preserves the image exactly — no crop, no distortion */
-    display: block;
-    user-select: none;
-    -webkit-user-drag: none;
-  }
+.frame{
+    width:min(96vw,96vh);
+    aspect-ratio:1/1;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    overflow:hidden;
+
+    background:#000000;
+}
+
+.frame img{
+    width:100%;
+    height:100%;
+
+    object-fit:contain;
+
+    display:block;
+
+    user-select:none;
+    -webkit-user-drag:none;
+
+    /* THIS DARKENS THE IMAGE BLACK */
+    filter:brightness(0.72) contrast(1.08);
+}
+
 </style>
 </head>
+
 <body>
-  <div class="frame">
-    <img
-      src="https://customer-assets.emergentagent.com/job_5cac3d2d-7b84-4ac9-84b9-84696dbf672e/artifacts/jlifadde_image.jpeg"
-      alt="What comes next in sequence: A, C, F, J, O, _ — A. P  B. Q  C. U"
-    />
-  </div>
+
+<div class="frame">
+
+<img
+src="https://customer-assets.emergentagent.com/job_5cac3d2d-7b84-4ac9-84b9-84696dbf672e/artifacts/jlifadde_image.jpeg"
+alt="Sequence Quiz"
+/>
+
+</div>
+
 </body>
+</html>
