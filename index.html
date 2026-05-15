@@ -6,59 +6,46 @@
 <title>Sequence Quiz</title>
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body {
+    height: 100%;
+    background-color: #000;        /* matches the image background → no visible borders */
+  }
+
   body {
     min-height: 100vh;
-    background-color: #000;
-    color: #fff;
-    font-family: 'Montserrat', 'Helvetica Neue', Arial, sans-serif;
-    display: flex; justify-content: center; align-items: center;
-    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 16px;
   }
-  .card {
-    width: 100%; max-width: 720px; aspect-ratio: 1 / 1;
-    background-color: #000; position: relative;
-    padding: 48px 56px; display: flex; flex-direction: column;
+
+  .frame {
+    /* Always a perfect square, sized to the smaller side of the viewport */
+    width: min(96vw, 96vh);
+    aspect-ratio: 1 / 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
   }
-  .bulb { position: absolute; top: 32px; right: 40px; width: 56px; height: 56px; }
-  .bulb svg { width: 100%; height: 100%; stroke: #fff; fill: none; stroke-width: 1.5; }
-  .title {
-    text-align: center; letter-spacing: 0.18em;
-    font-weight: 500; font-size: 22px; margin-top: 90px;
+
+  .frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;   /* preserves the image exactly — no crop, no distortion */
+    display: block;
+    user-select: none;
+    -webkit-user-drag: none;
   }
-  .sequence-box {
-    margin: 48px auto 0; background-color: #4a4a4a;
-    border-radius: 50px; padding: 28px 60px; min-width: 420px;
-    text-align: center; box-shadow: 0 4px 20px rgba(0,0,0,0.4);
-  }
-  .sequence-box .seq { font-size: 38px; font-weight: 800; letter-spacing: 0.05em; }
-  .options { margin-top: auto; padding-top: 60px; font-size: 26px; line-height: 1.5; }
-  .options .option { display: flex; align-items: baseline; gap: 22px; margin-bottom: 6px; }
-  .options .answer { font-weight: 800; font-size: 28px; }
 </style>
 </head>
 <body>
-  <div class="card">
-    <div class="bulb" aria-hidden="true">
-      <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
-        <path d="M32 6 C20 6 13 14 13 24 C13 31 17 35 20 39 C22 42 23 44 23 47
-                 L41 47 C41 44 42 42 44 39 C47 35 51 31 51 24 C51 14 44 6 32 6 Z" />
-        <path d="M26 24 L32 34 L38 24" />
-        <path d="M32 34 L32 47" />
-        <line x1="24" y1="50" x2="40" y2="50" />
-        <line x1="25" y1="53" x2="39" y2="53" />
-        <line x1="26" y1="56" x2="38" y2="56" />
-        <path d="M28 58 L36 58 L34 62 L30 62 Z" />
-      </svg>
-    </div>
-    <h1 class="title">WHAT COMES NEXT IN SEQUENCE</h1>
-    <div class="sequence-box">
-      <span class="seq">A,&nbsp;C,&nbsp;F,&nbsp;J,&nbsp;O,&nbsp;_</span>
-    </div>
-    <div class="options">
-      <div class="option"><span>A.</span><span class="answer">P</span></div>
-      <div class="option"><span>B.</span><span class="answer">Q</span></div>
-      <div class="option"><span>C.</span><span class="answer">U</span></div>
-    </div>
+  <div class="frame">
+    <img
+      src="https://customer-assets.emergentagent.com/job_5cac3d2d-7b84-4ac9-84b9-84696dbf672e/artifacts/jlifadde_image.jpeg"
+      alt="What comes next in sequence: A, C, F, J, O, _ — A. P  B. Q  C. U"
+    />
   </div>
 </body>
 </html>
