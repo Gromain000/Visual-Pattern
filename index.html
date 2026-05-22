@@ -6,6 +6,13 @@
 
 <title>Sequence Quiz</title>
 
+<!-- FONTS -->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=UnifrakturCook:wght@700&display=swap" rel="stylesheet">
+
 <style>
 
 *{
@@ -77,7 +84,7 @@ body{
     filter:brightness(0.72) contrast(1.08);
 }
 
-/* TRANSLATABLE QUESTION */
+/* QUESTION */
 
 .question-text{
     position:absolute;
@@ -93,7 +100,7 @@ body{
 
     color:white;
 
-    Font-size:clamp(15px, 2.1vw, 20px);
+    font-size:clamp(15px, 2.1vw, 20px);
 
     font-family:Arial, sans-serif;
 
@@ -103,7 +110,6 @@ body{
 
     z-index:200;
 
-    /* hides original image text behind */
     background:black;
 
     padding:8px 14px;
@@ -111,7 +117,7 @@ body{
     border-radius:8px;
 }
 
-/* CLICKABLE AREAS */
+/* ANSWER AREAS */
 
 .choice-a,
 .choice-b,
@@ -133,8 +139,6 @@ body{
     box-shadow 0.15s ease;
 }
 
-/* HOVER EFFECT */
-
 .choice-a:hover,
 .choice-b:hover,
 .choice-c:hover{
@@ -144,8 +148,6 @@ body{
     0 0 12px rgba(255,255,255,0.18);
 }
 
-/* TAP EFFECT */
-
 .choice-a:active,
 .choice-b:active,
 .choice-c:active{
@@ -153,8 +155,6 @@ body{
 
     background:rgba(255,255,255,0.12);
 }
-
-/* POSITIONS */
 
 .choice-a{
     left:2%;
@@ -169,6 +169,184 @@ body{
 .choice-c{
     left:2%;
     top:60%;
+}
+
+/* LIGHTBULB CLICK AREA */
+
+.lightbulb-hitbox{
+    position:absolute;
+
+    top:1.5%;
+    right:1.5%;
+
+    width:10%;
+    height:10%;
+
+    z-index:300;
+
+    cursor:pointer;
+
+    border-radius:50%;
+}
+
+/* POPUP OVERLAY */
+
+.popup-overlay{
+    position:fixed;
+
+    top:0;
+    left:0;
+
+    width:100%;
+    height:100%;
+
+    background:rgba(0,0,0,0.72);
+
+    display:flex;
+
+    justify-content:center;
+    align-items:center;
+
+    opacity:0;
+    visibility:hidden;
+
+    transition:
+    opacity 0.25s ease,
+    visibility 0.25s ease;
+
+    z-index:99999;
+
+    backdrop-filter:blur(2px);
+}
+
+/* SHOW POPUP */
+
+.popup-overlay.active{
+    opacity:1;
+    visibility:visible;
+}
+
+/* POPUP BOX */
+
+.popup-box{
+    position:relative;
+
+    width:min(70vw, 520px);
+
+    aspect-ratio:1/1;
+
+    background:black;
+
+    border:8px solid white;
+
+    border-radius:28px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    padding-top:28px;
+
+    box-shadow:
+    0 0 18px rgba(255,255,255,0.12);
+
+    animation:popupAppear 0.25s ease;
+}
+
+/* RIGHT SIDE LINE */
+
+.popup-box::after{
+    content:"";
+
+    position:absolute;
+
+    top:-18px;
+    right:-14px;
+
+    width:2px;
+    height:110%;
+
+    background:white;
+
+    opacity:0.85;
+}
+
+/* TITLE */
+
+.popup-title{
+    color:white;
+
+    font-family:'UnifrakturCook', cursive;
+
+    font-size:clamp(38px,5vw,60px);
+
+    margin-bottom:60px;
+
+    text-shadow:
+    0 0 3px rgba(255,255,255,0.15);
+}
+
+/* CLUE TEXT */
+
+.popup-text{
+    width:78%;
+
+    color:white;
+
+    text-align:center;
+
+    font-family:'Special Elite', monospace;
+
+    font-size:clamp(17px,2vw,28px);
+
+    line-height:1.5;
+
+    letter-spacing:1px;
+
+    text-shadow:
+    0 0 2px rgba(255,255,255,0.08);
+}
+
+/* ANIMATION */
+
+@keyframes popupAppear{
+    from{
+        transform:scale(0.92);
+        opacity:0;
+    }
+
+    to{
+        transform:scale(1);
+        opacity:1;
+    }
+}
+
+/* MOBILE */
+
+@media (max-width:700px){
+
+.popup-box{
+    width:78vw;
+
+    border-width:6px;
+
+    border-radius:22px;
+
+    padding-top:20px;
+}
+
+.popup-title{
+    margin-bottom:45px;
+}
+
+.popup-text{
+    width:82%;
+
+    font-size:clamp(15px,4vw,22px);
+}
+
 }
 
 </style>
@@ -203,13 +381,17 @@ src="https://customer-assets.emergentagent.com/job_5cac3d2d-7b84-4ac9-84b9-84696
 alt="Sequence Quiz"
 />
 
-<!-- TRANSLATABLE TEXT -->
+<!-- QUESTION -->
 
 <div class="question-text">
 WHAT COMES NEXT IN SEQUENCE
 </div>
 
-<!-- CLICKABLE AREAS -->
+<!-- LIGHTBULB CLICK -->
+
+<div class="lightbulb-hitbox" id="openClue"></div>
+
+<!-- ANSWERS -->
 
 <a
 class="choice-a"
@@ -227,6 +409,63 @@ href="#">
 </a>
 
 </div>
+
+<!-- POPUP -->
+
+<div class="popup-overlay" id="popupOverlay">
+
+    <div class="popup-box" id="popupBox">
+
+        <div class="popup-title">
+            Clue
+        </div>
+
+        <div class="popup-text">
+            Each step beareth a weight greater than that which comes before it
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+
+/* OPEN POPUP */
+
+const openClue =
+document.getElementById("openClue");
+
+const popupOverlay =
+document.getElementById("popupOverlay");
+
+const popupBox =
+document.getElementById("popupBox");
+
+openClue.addEventListener("click", () => {
+    popupOverlay.classList.add("active");
+});
+
+/* CLOSE WHEN CLICKING OUTSIDE */
+
+popupOverlay.addEventListener("click", (e) => {
+
+    if(!popupBox.contains(e.target)){
+
+        popupOverlay.classList.remove("active");
+
+    }
+
+});
+
+/* PREVENT INSIDE CLICK CLOSE */
+
+popupBox.addEventListener("click", (e) => {
+
+    e.stopPropagation();
+
+});
+
+</script>
 
 </body>
 </html>
