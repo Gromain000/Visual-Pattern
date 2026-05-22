@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Find The Next Number</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Sequence Quiz</title>
 
 <style>
 
@@ -26,15 +26,12 @@ body{
     align-items:center;
 }
 
-/* FRAME */
 .frame{
     width:min(96vw,96vh);
     aspect-ratio:1/1;
     position:relative;
     overflow:hidden;
     background:#000;
-
-    isolation:isolate;
 }
 
 .frame img{
@@ -46,21 +43,7 @@ body{
     user-select:none;
     -webkit-user-drag:none;
 
-    filter: brightness(0.72) contrast(1.08);
-
-    transform: translateZ(0);
-}
-
-/* FIX EDGE ARTIFACT */
-.frame::after{
-    content:"";
-    position:absolute;
-    top:0;
-    left:0;
-    width:100%;
-    height:100%;
-    pointer-events:none;
-    box-shadow: inset 0 0 0 1px #000;
+    filter:brightness(0.72) contrast(1.08);
 }
 
 /* CLICKABLE AREAS */
@@ -96,7 +79,7 @@ body{
     0 0 12px rgba(255,255,255,0.18);
 }
 
-/* CLICK EFFECT */
+/* TAP / CLICK EFFECT */
 
 .choice-a:active,
 .choice-b:active,
@@ -124,32 +107,34 @@ body{
 }
 
 </style>
-
 </head>
 
 <body>
 
 <div class="frame">
 
-    <img src="IMG_3007.JPG" alt="Find the next number puzzle">
+<img
+src="https://customer-assets.emergentagent.com/job_5cac3d2d-7b84-4ac9-84b9-84696dbf672e/artifacts/jlifadde_image.jpeg"
+alt="Sequence Quiz"
+/>
 
-    <!-- A.77 -->
-    <a
-    class="choice-a"
-    href="https://gromain000.github.io/Gromain/">
-    </a>
+<!-- A.P -->
+<a
+class="choice-a"
+href="https://gromain000.github.io/Gromain/">
+</a>
 
-    <!-- B.67 -->
-    <a
-    class="choice-b"
-    href="#">
-    </a>
+<!-- B.Q -->
+<a
+class="choice-b"
+href="https://gromain000.github.io/Gromain/">
+</a>
 
-    <!-- C.198 -->
-    <a
-    class="choice-c"
-    href="https://gromain000.github.io/Gromain/">
-    </a>
+<!-- C.U -->
+<a
+class="choice-c"
+href="#">
+</a>
 
 </div>
 
