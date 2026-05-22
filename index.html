@@ -26,6 +26,31 @@ body{
     align-items:center;
 }
 
+/* GOOGLE TRANSLATE POSITION */
+#google_translate_element{
+    position:fixed;
+    top:10px;
+    right:10px;
+    z-index:9999;
+}
+
+/* keep default Google styling small */
+.goog-te-gadget{
+    font-size:12px !important;
+}
+
+.goog-te-gadget span{
+    display:none;
+}
+
+.goog-te-combo{
+    background:#111;
+    color:#fff;
+    border:1px solid #333;
+    padding:6px;
+    border-radius:6px;
+}
+
 .frame{
     width:min(96vw,96vh);
     aspect-ratio:1/1;
@@ -68,8 +93,6 @@ body{
     box-shadow 0.15s ease;
 }
 
-/* HOVER EFFECT */
-
 .choice-a:hover,
 .choice-b:hover,
 .choice-c:hover{
@@ -78,8 +101,6 @@ body{
     box-shadow:
     0 0 12px rgba(255,255,255,0.18);
 }
-
-/* TAP / CLICK EFFECT */
 
 .choice-a:active,
 .choice-b:active,
@@ -111,6 +132,26 @@ body{
 
 <body>
 
+<!-- GOOGLE TRANSLATE -->
+<div id="google_translate_element"></div>
+
+<script type="text/javascript">
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement(
+    {
+      pageLanguage: 'en',
+      includedLanguages: 'en,fr,es,de,it,pt,nl,ru,ar,zh-CN,ja,ko',
+      layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+    },
+    'google_translate_element'
+  );
+}
+</script>
+
+<script type="text/javascript"
+src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit">
+</script>
+
 <div class="frame">
 
 <img
@@ -118,23 +159,9 @@ src="https://customer-assets.emergentagent.com/job_5cac3d2d-7b84-4ac9-84b9-84696
 alt="Sequence Quiz"
 />
 
-<!-- A.P -->
-<a
-class="choice-a"
-href="https://gromain000.github.io/Gromain/">
-</a>
-
-<!-- B.Q -->
-<a
-class="choice-b"
-href="https://gromain000.github.io/Gromain/">
-</a>
-
-<!-- C.U -->
-<a
-class="choice-c"
-href="#">
-</a>
+<a class="choice-a" href="https://gromain000.github.io/Gromain/"></a>
+<a class="choice-b" href="https://gromain000.github.io/Gromain/"></a>
+<a class="choice-c" href="#"></a>
 
 </div>
 
