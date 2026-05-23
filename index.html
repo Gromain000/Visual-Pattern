@@ -1,232 +1,338 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Sequence Quiz</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=UnifrakturCook:wght@700&display=swap" rel="stylesheet">
 
 <style>
 
 *{
-    box-sizing:border-box;
-    margin:0;
-    padding:0;
+margin:0;
+padding:0;
+box-sizing:border-box;
 }
 
-html, body{
-    width:100%;
-    height:100%;
-    background:#000;
-    overflow:hidden;
+html,body{
+width:100%;
+height:100%;
+background:black;
+overflow:hidden;
 }
 
 body{
-    display:flex;
-    justify-content:center;
-    align-items:center;
-}
-
-/* GOOGLE TRANSLATE */
-
-#google_translate_element{
-    position:fixed;
-    top:10px;
-    right:10px;
-    z-index:9999;
-}
-
-.goog-te-gadget{
-    font-size:12px !important;
-}
-
-.goog-te-gadget span{
-    display:none;
-}
-
-.goog-te-combo{
-    background:#111;
-    color:#fff;
-    border:1px solid #333;
-    padding:6px;
-    border-radius:6px;
-    outline:none;
+display:flex;
+justify-content:center;
+align-items:center;
 }
 
 /* FRAME */
 
 .frame{
-    width:min(96vw,96vh);
-    aspect-ratio:1/1;
-    position:relative;
-    overflow:hidden;
-    background:#000;
+position:relative;
+width:min(96vw,96vh);
+aspect-ratio:1/1;
 }
 
 /* IMAGE */
 
 .frame img{
-    width:100%;
-    height:100%;
-    object-fit:contain;
-    display:block;
-
-    user-select:none;
-    -webkit-user-drag:none;
-
-    filter:brightness(0.72) contrast(1.08);
+width:100%;
+height:100%;
+object-fit:contain;
+display:block;
+filter:brightness(0.72) contrast(1.08);
+pointer-events:none;
 }
 
-/* TRANSLATABLE QUESTION */
+/* QUESTION */
 
 .question-text{
-    position:absolute;
+position:absolute;
 
-    top:16%;
-    left:50%;
+top:16%;
+left:50%;
 
-    transform:translateX(-50%);
+transform:translateX(-50%);
 
-    width:90%;
+width:90%;
 
-    text-align:center;
+text-align:center;
 
-    color:white;
+color:white;
 
-    Font-size:clamp(15px, 2.1vw, 20px);
+font-size:clamp(15px,2vw,20px);
 
-    font-family:Arial, sans-serif;
+font-family:Arial;
 
-    font-weight:300;
+letter-spacing:2px;
 
-    letter-spacing:2px;
+background:black;
 
-    z-index:200;
+padding:8px 14px;
 
-    /* hides original image text behind */
-    background:black;
+border-radius:8px;
 
-    padding:8px 14px;
-
-    border-radius:8px;
+z-index:100;
 }
 
-/* CLICKABLE AREAS */
+/* CHOICES */
 
 .choice-a,
 .choice-b,
 .choice-c{
-    position:absolute;
+position:absolute;
 
-    width:28%;
-    height:6%;
+width:28%;
+height:6%;
 
-    z-index:100;
+z-index:200;
 
-    cursor:pointer;
-
-    border-radius:12px;
-
-    transition:
-    transform 0.08s ease,
-    background 0.15s ease,
-    box-shadow 0.15s ease;
+border-radius:12px;
 }
-
-/* HOVER EFFECT */
-
-.choice-a:hover,
-.choice-b:hover,
-.choice-c:hover{
-    background:rgba(255,255,255,0.05);
-
-    box-shadow:
-    0 0 12px rgba(255,255,255,0.18);
-}
-
-/* TAP EFFECT */
-
-.choice-a:active,
-.choice-b:active,
-.choice-c:active{
-    transform:scale(0.95);
-
-    background:rgba(255,255,255,0.12);
-}
-
-/* POSITIONS */
 
 .choice-a{
-    left:2%;
-    top:48%;
+left:2%;
+top:48%;
 }
 
 .choice-b{
-    left:2%;
-    top:54%;
+left:2%;
+top:54%;
 }
 
 .choice-c{
-    left:2%;
-    top:60%;
+left:2%;
+top:60%;
+}
+
+/* LIGHTBULB */
+
+.lightbulb-hitbox{
+
+position:absolute;
+
+/* CHANGE THESE IF NEEDED */
+
+top:0%;
+right:0%;
+
+width:14%;
+height:14%;
+
+z-index:9999;
+
+cursor:pointer;
+
+/* TEMP TEST */
+
+background:red;
+opacity:0.25;
+border-radius:50%;
+}
+
+/* POPUP */
+
+.popup-overlay{
+
+position:fixed;
+
+top:0;
+left:0;
+
+width:100%;
+height:100%;
+
+background:rgba(0,0,0,0.82);
+
+display:flex;
+
+justify-content:center;
+align-items:center;
+
+opacity:0;
+pointer-events:none;
+
+transition:0.25s;
+
+z-index:999999;
+}
+
+.popup-overlay.active{
+opacity:1;
+pointer-events:auto;
+}
+
+/* BOX */
+
+.popup-box{
+
+position:relative;
+
+width:min(78vw,520px);
+
+aspect-ratio:1/1;
+
+background:black;
+
+border:8px solid white;
+
+border-radius:28px;
+
+display:flex;
+
+flex-direction:column;
+
+align-items:center;
+
+padding-top:30px;
+}
+
+/* SIDE LINE */
+
+.popup-box::after{
+
+content:"";
+
+position:absolute;
+
+right:-12px;
+top:-14px;
+
+width:2px;
+height:108%;
+
+background:white;
+}
+
+/* TITLE */
+
+.popup-title{
+
+color:white;
+
+font-family:'UnifrakturCook', cursive;
+
+font-size:clamp(42px,5vw,62px);
+
+margin-bottom:55px;
+}
+
+/* TEXT */
+
+.popup-text{
+
+width:80%;
+
+text-align:center;
+
+color:white;
+
+font-family:'Special Elite', monospace;
+
+font-size:clamp(16px,2vw,26px);
+
+line-height:1.5;
 }
 
 </style>
+
 </head>
 
 <body>
-
-<!-- GOOGLE TRANSLATE -->
-
-<div id="google_translate_element"></div>
-
-<script>
-function googleTranslateElementInit() {
-  new google.translate.TranslateElement(
-    {
-      pageLanguage: 'en',
-      autoDisplay: false
-    },
-    'google_translate_element'
-  );
-}
-</script>
-
-<script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-
-<!-- FRAME -->
 
 <div class="frame">
 
 <img
 src="https://customer-assets.emergentagent.com/job_5cac3d2d-7b84-4ac9-84b9-84696dbf672e/artifacts/jlifadde_image.jpeg"
-alt="Sequence Quiz"
-/>
-
-<!-- TRANSLATABLE TEXT -->
+>
 
 <div class="question-text">
 WHAT COMES NEXT IN SEQUENCE
 </div>
 
-<!-- CLICKABLE AREAS -->
+<!-- BULB CLICK -->
 
-<a
-class="choice-a"
-href="https://gromain000.github.io/Gromain/">
-</a>
+<div
+class="lightbulb-hitbox"
+id="bulb">
+</div>
 
-<a
-class="choice-b"
-href="https://gromain000.github.io/Gromain/">
-</a>
+<!-- CHOICES -->
 
-<a
-class="choice-c"
-href="#">
-</a>
+<a class="choice-a"
+href="https://gromain000.github.io/Gromain/"></a>
+
+<a class="choice-b"
+href="https://gromain000.github.io/Gromain/"></a>
+
+<a class="choice-c"
+href="#"></a>
 
 </div>
+
+<!-- POPUP -->
+
+<div
+class="popup-overlay"
+id="popup">
+
+<div
+class="popup-box"
+id="popupBox">
+
+<div class="popup-title">
+Clue
+</div>
+
+<div class="popup-text">
+Each step beareth a weight greater than that which comes before it
+</div>
+
+</div>
+
+</div>
+
+<script>
+
+const bulb =
+document.getElementById("bulb");
+
+const popup =
+document.getElementById("popup");
+
+const popupBox =
+document.getElementById("popupBox");
+
+/* OPEN */
+
+bulb.onclick = function(){
+
+popup.classList.add("active");
+
+};
+
+/* CLOSE OUTSIDE */
+
+popup.onclick = function(e){
+
+if(!popupBox.contains(e.target)){
+
+popup.classList.remove("active");
+
+}
+
+};
+
+</script>
 
 </body>
 </html>
