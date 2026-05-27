@@ -96,7 +96,39 @@ height:6%;
 
 z-index:200;
 
+cursor:pointer;
+
 border-radius:12px;
+
+transition:
+transform 0.08s ease,
+background 0.15s ease,
+box-shadow 0.15s ease;
+}
+
+/* HOVER EFFECT */
+
+.choice-a:hover,
+.choice-b:hover,
+.choice-c:hover{
+
+background:rgba(255,255,255,0.05);
+
+box-shadow:
+0 0 12px rgba(255,255,255,0.18);
+
+}
+
+/* TAP EFFECT */
+
+.choice-a:active,
+.choice-b:active,
+.choice-c:active{
+
+transform:scale(0.95);
+
+background:rgba(255,255,255,0.12);
+
 }
 
 .choice-a{
