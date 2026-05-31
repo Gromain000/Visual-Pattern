@@ -1,325 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>RIDLLE</title>
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-<link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=UnifrakturCook:wght@700&display=swap" rel="stylesheet">
+<title>Find The Next Number</title>
 
 <style>
 
 *{
-margin:0;
-padding:0;
-box-sizing:border-box;
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
 }
 
-html,body{
-width:100%;
-height:100%;
-background:black;
-overflow:hidden;
+html, body{
+    width:100%;
+    height:100%;
+    background:#000;
+    overflow:hidden;
 }
 
 body{
-display:flex;
-justify-content:center;
-align-items:flex-start;
-
-padding-top:55px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
 }
 
-/* GOOGLE TRANSLATE */
-#google_translate_element{
-position:fixed;
-top:10px;
-right:10px;
-z-index:999999;
-}
-
-.goog-te-gadget{
-font-size:12px !important;
-}
-
-.goog-te-gadget span{
-display:none;
-}
-
-.goog-te-combo{
-background:#111;
-color:#fff;
-border:1px solid #333;
-padding:6px;
-border-radius:6px;
-}
-
-/* FRAME */
-
+/* FRAME — only seam fix added */
 .frame{
-position:relative;
-width:min(88vw,88vh);
-aspect-ratio:1/1;
-}
+    width:min(96vw,96vh);
+    aspect-ratio:1/1;
+    position:relative;
+    overflow:hidden;
+    background:#000;
 
-/* IMAGE */
+    /* 🔥 fixes 1px seam without affecting image */
+    isolation:isolate;
+}
 
 .frame img{
-width:100%;
-height:100%;
-object-fit:contain;
-display:block;
-filter:brightness(0.72) contrast(1.08);
-pointer-events:none;
+    width:100%;
+    height:100%;
+    object-fit:contain;
+    display:block;
+
+    user-select:none;
+    -webkit-user-drag:none;
+
+    filter: brightness(0.72) contrast(1.08);
+
+    /* 🔥 prevents rendering gaps */
+    transform: translateZ(0);
 }
 
-/* QUESTION */
-
-.question-text{
-position:absolute;
-
-top:14%;
-left:50%;
-
-transform:translateX(-50%);
-
-width:99%;
-
-text-align:center;
-
-color:white;
-
-font-size:clamp(13px,2vw,20px);
-
-font-family:Arial;
-
-letter-spacing:2px;
-
-background:black;
-
-padding:8px 14px;
-
-border-radius:8px;
-
-z-index:100;
-}
-
-/* CHOICES */
-
-.choice-a,
-.choice-b,
-.choice-c{
-  
-display:flex;
-  
-align-items:center;
-
-gap:25px
-
-text-decoration:none;
-
-color:white;
-
-font-family:Arial, sans-serif;
-  
-font-size:clamp(13px,2vw,20px);
-
-margin:3px;
-
-}
-
-.choice-letter{
-
-font-weight:300;
-
-}
-
-.choice-word{
-
-font-weight:800;
-
-letter-spacing:1px;
-
-}  
-  
-transition:
-transform 0.08s ease,
-background 0.15s ease,
-box-shadow 0.15s ease;
-}
-
-/* HOVER EFFECT */
-
-.choice-a:hover,
-.choice-b:hover,
-.choice-c:hover{
-
-background:rgba(255,255,255,0.05);
-
-box-shadow:
-0 0 12px rgba(255,255,255,0.18);
-
-}
-
-/* TAP EFFECT */
-
-.choice-a:active,
-.choice-b:active,
-.choice-c:active{
-
-transform:scale(0.95);
-
-background:rgba(255,255,255,0.12);
-
-}
-
-.choice-a{
-left:15.5%;
-top:54.5%;
-}
-
-.choice-b{
-left:15.5%;
-top:61.5%;
-}
-
-.choice-c{
-left:15.5%;
-top:69.5%;
-}
-
-/* LIGHTBULB */
-
-.lightbulb-hitbox{
-
-position:absolute;
-
-/* CHANGE THESE IF NEEDED */
-
-top:0%;
-right:14%;
-
-width:12%;
-height:12%;
-
-z-index:9999;
-
-cursor:pointer;
-
-/* TEMP TEST */
-
-border-radius:50%;
-}
-
-/* POPUP */
-
-.popup-overlay{
-
-position:fixed;
-
-top:0;
-left:0;
-
-width:100%;
-height:100%;
-
-background:rgba(0,0,0,0.82);
-
-display:flex;
-
-justify-content:center;
-align-items:center;
-
-opacity:0;
-pointer-events:none;
-
-transition:0.25s;
-
-z-index:999999;
-}
-
-.popup-overlay.active{
-opacity:1;
-pointer-events:auto;
-}
-
-/* BOX */
-
-.popup-box{
-
-position:relative;
-
-width:min(78vw,520px);
-
-aspect-ratio:1/1;
-
-background:black;
-
-border:8px solid white;
-
-border-radius:28px;
-
-display:flex;
-
-flex-direction:column;
-
-align-items:center;
-
-padding-top:30px;
-
-}
-
-/* SIDE LINE */
-
-.popup-box::after{
-
-content:"";
-
-position:absolute;
-
-right:-12px;
-top:-14px;
-
-width:2px;
-height:108%;
-
-background:white;
-}
-
-/* TITLE */
-
-.popup-title{
-
-color:white;
-
-font-family:'UnifrakturCook', cursive;
-
-font-size:clamp(42px,5vw,62px);
-
-margin-bottom:55px;
-}
-
-/* TEXT */
-
-.popup-text{
-
-width:80%;
-
-text-align:center;
-
-color:white;
-
-font-family:'Special Elite', monospace;
-
-font-size:clamp(16px,2vw,26px);
-
-line-height:1.5;
+/* 🔥 invisible overlay to kill edge artifact */
+.frame::after{
+    content:"";
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    pointer-events:none;
+    box-shadow: inset 0 0 0 1px #000;
 }
 
 </style>
@@ -328,117 +71,9 @@ line-height:1.5;
 
 <body>
 
-<!-- GOOGLE TRANSLATE -->
-<div id="google_translate_element"></div>
-
-<script>
-function googleTranslateElementInit() {
-  new google.translate.TranslateElement(
-    {
-      pageLanguage: 'en',
-      autoDisplay: false
-    },
-    'google_translate_element'
-  );
-}
-</script>
-
-<script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-
 <div class="frame">
-
-<img
-src="images/IMG_0003.JPG"
->
-
-<div class="question-text">
-I SPEAK WITHOUT A MOUTH, I HEAR WITHOUT EARS, I HAVE NO BODY BUT | COME ALIVE WITH THE WIND
-WHAT AM I?
+    <img src="IMG_3007.JPG" alt="Find the next number puzzle">
 </div>
-
-<!-- BULB CLICK -->
-
-<div
-class="lightbulb-hitbox"
-id="bulb">
-</div>
-
-<!-- CHOICES -->
-
-<a class="choice-a"
-href="https://gromain000.github.io/Gromain/">
-<span class="choice-letter">A.</span>
-<span class="choice-word">THUNDER</span>
-</a>
-
-<a class="choice-b"
-href="https://gromain000.github.io/Gromain/">
-<span class="choice-letter">B.</span> 
-<span class="choice-word">SOUND</span> 
-</a>
-
-<a class="choice-c"
-href="#">
-<span class="choice-letter">C.</span> 
-<span class="choice-word">ECHO</span> 
-</a>
-
-</div>
-
-<!-- POPUP -->
-
-<div
-class="popup-overlay"
-id="popup">
-
-<div
-class="popup-box"
-id="popupBox">
-
-<div class="popup-title">
-Clue
-</div>
-
-<div class="popup-text">
-The second voice is born only after the first is cast into the void
-</div>
-
-</div>
-
-</div>
-
-<script>
-
-const bulb =
-document.getElementById("bulb");
-
-const popup =
-document.getElementById("popup");
-
-const popupBox =
-document.getElementById("popupBox");
-
-/* OPEN */
-
-bulb.onclick = function(){
-
-popup.classList.add("active");
-
-};
-
-/* CLOSE OUTSIDE */
-
-popup.onclick = function(e){
-
-if(!popupBox.contains(e.target)){
-
-popup.classList.remove("active");
-
-}
-
-};
-
-</script>
 
 </body>
 </html>
