@@ -36,7 +36,7 @@ align-items:flex-start;
 padding-top:55px;
 }
 
-/* Question TEXT */
+/* Question-Text */
  
 .sequence{
 position:absolute;
@@ -61,8 +61,73 @@ z-index: 999;
  
 }
 
+/* Question-Tex MOBILE */
+
+@media (max-width: 768px){
+ 
+.sequence{
+position:absolute;
+
+display:flex;
+ 
+top:29.8%;
+
+left:38%;
+
+font-size:18px;
+ 
+font-weight:900;
+
+letter-spacing:clamp(3px,2vw,6)
+ 
+marging-bottom:15px;
+
+color:white;
+
+z-index: 999;
+ 
+}
+ 
 /* CHOICE TEXT */
 
+.choice-text{
+position:absolute;
+
+left:17.5%;
+top:48%;
+
+display:flex;
+flex-direction:column;
+
+gap:4px;
+
+z-index: 100;
+
+color:white;
+
+font-family:Arial,sans-serif;
+}
+
+.choice-line{
+display:flex;
+align-items:center;
+}
+
+.choice-letter{
+font-size:18px;
+font-weight: 200;
+margin-right:10px;
+}
+
+.choice-answer{
+font-size:18px;
+font-weight: 1000;
+}
+
+/* CHOICE Text MOBILE */
+ 
+ @media (max-width: 768px){
+  
 .choice-text{
 position:absolute;
 
