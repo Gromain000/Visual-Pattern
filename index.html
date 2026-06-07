@@ -15,71 +15,6 @@
 
 <style>
 
-/* Question TEXT */
- 
-@media (max-width: 768px){
- 
-.sequence{
-position:absolute;
-
-display:flex;
- 
-top:29.8%;
-
-left:38%;
-
-font-size:18px;
- 
-font-weight:900;
-
-letter-spacing:clamp(3px,2vw,6)
- 
-marging-bottom:15px;
-
-color:white;
-
-z-index: 999;
- 
-}
-
-/* CHOICE TEXT */
- 
-@media (max-width: 768px){
-  
-.choice-text{
-position:absolute;
-
-left:17.5%;
-top:48%;
-
-display:flex;
-flex-direction:column;
-
-gap:4px;
-
-z-index: 100;
-
-color:white;
-
-font-family:Arial,sans-serif;
-}
-
-.choice-line{
-display:flex;
-align-items:center;
-}
-
-.choice-letter{
-font-size:18px;
-font-weight: 200;
-margin-right:10px;
-}
-
-.choice-answer{
-font-size:18px;
-font-weight: 1000;
-}
-  
 *{
 margin:0;
 padding:0;
@@ -185,7 +120,7 @@ position:absolute;
 width:28%;
 height:6%;
 
-z-index: 999;
+z-index:200;
 
 cursor:pointer;
 
@@ -222,21 +157,19 @@ background:rgba(255,255,255,0.12);
 
 }
 
-@media (max-width: 768px){
- 
 .choice-a{
-left:14%;
-top:47.5%;
+left:2%;
+top:48%;
 }
 
 .choice-b{
-left:14%;
-top:54.5%;
+left:2%;
+top:54%;
 }
 
 .choice-c{
-left:14%;
-top:61%;
+left:2%;
+top:60%;
 }
 
 /* LIGHTBULB */
@@ -400,10 +333,6 @@ src="images/IMG_0001.JPG"
 WHAT COMES NEXT IN SEQUENCE
 </div>
 
-<div class="sequence"> 
- A,C,F,J,O,_
- </div>
- 
 <!-- BULB CLICK -->
 
 <div
@@ -420,27 +349,8 @@ href="https://gromain000.github.io/Gromain/"></a>
 href="https://gromain000.github.io/Gromain/"></a>
 
 <a class="choice-c"
-href="Q2.html"></a>
+href="#"></a>
 
-<div class="choice-text">
-
-    <div class="choice-line">
-        <span class="choice-letter">A.</span>
-        <span class="choice-answer">P</span>
-    </div>
-
-    <div class="choice-line">
-        <span class="choice-letter">B.</span>
-        <span class="choice-answer">Q</span>
-    </div>
-
-    <div class="choice-line">
-        <span class="choice-letter">C.</span>
-        <span class="choice-answer">U</span>
-    </div>
-
-</div>
-  
 </div>
 
 <!-- POPUP -->
