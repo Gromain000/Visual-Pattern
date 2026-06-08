@@ -15,54 +15,8 @@
 
 <style>
 
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-}
-
-html,body{
-width:100%;
-height:100%;
-background:black;
-overflow:hidden;
-}
-
-body{
-display:flex;
-justify-content:center;
-align-items:flex-start;
-
-padding-top:55px;
-}
-
-/* Question-Text */
+/* Question TEXT */
  
-.sequence{
-position:absolute;
-
-display:flex;
- 
-top:29.8%;
-
-left:38%;
-
-font-size:18px;
- 
-font-weight:900;
-
-letter-spacing:clamp(3px,2vw,6)
- 
-marging-bottom:15px;
-
-color:white;
-
-z-index: 999;
- 
-}
-
-/* Question-Tex MOBILE */
-
 @media (max-width: 768px){
  
 .sequence{
@@ -87,46 +41,10 @@ color:white;
 z-index: 999;
  
 }
- 
+
 /* CHOICE TEXT */
-
-.choice-text{
-position:absolute;
-
-left:17.5%;
-top:48%;
-
-display:flex;
-flex-direction:column;
-
-gap:4px;
-
-z-index: 100;
-
-color:white;
-
-font-family:Arial,sans-serif;
-}
-
-.choice-line{
-display:flex;
-align-items:center;
-}
-
-.choice-letter{
-font-size:18px;
-font-weight: 200;
-margin-right:10px;
-}
-
-.choice-answer{
-font-size:18px;
-font-weight: 1000;
-}
-
-/* CHOICE Text MOBILE */
  
- @media (max-width: 768px){
+@media (max-width: 768px){
   
 .choice-text{
 position:absolute;
@@ -161,7 +79,28 @@ margin-right:10px;
 font-size:18px;
 font-weight: 1000;
 }
- 
+  
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+html,body{
+width:100%;
+height:100%;
+background:black;
+overflow:hidden;
+}
+
+body{
+display:flex;
+justify-content:center;
+align-items:flex-start;
+
+padding-top:55px;
+}
+
 /* GOOGLE TRANSLATE */
 #google_translate_element{
 position:fixed;
@@ -246,7 +185,7 @@ position:absolute;
 width:28%;
 height:6%;
 
-z-index:200;
+z-index: 999;
 
 cursor:pointer;
 
@@ -283,19 +222,21 @@ background:rgba(255,255,255,0.12);
 
 }
 
+@media (max-width: 768px){
+ 
 .choice-a{
-left:2%;
-top:48%;
+left:14%;
+top:47.5%;
 }
 
 .choice-b{
-left:2%;
-top:54%;
+left:14%;
+top:54.5%;
 }
 
 .choice-c{
-left:2%;
-top:60%;
+left:14%;
+top:61%;
 }
 
 /* LIGHTBULB */
@@ -479,7 +420,7 @@ href="https://gromain000.github.io/Gromain/"></a>
 href="https://gromain000.github.io/Gromain/"></a>
 
 <a class="choice-c"
-href="#"></a>
+href="Q2.html"></a>
 
 <div class="choice-text">
 
@@ -499,7 +440,7 @@ href="#"></a>
     </div>
 
 </div>
- 
+  
 </div>
 
 <!-- POPUP -->
