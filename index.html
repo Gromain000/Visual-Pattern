@@ -89,11 +89,6 @@ color:white;
 font-family:Arial,sans-serif;
 }
 
-.choice-line{
-display:flex;
-align-items:center;
-}
-
 .choice-letter{
 font-size:18px;
 font-weight: 200;
@@ -247,14 +242,23 @@ z-index:100;
 .choice-c{
 position:absolute;
 
+left:17.5%;
+top:48%;
+ 
+ display:flex;
+ align-items:left;
+
 width:28%;
 height:6%;
 
-z-index: 999;
-
-cursor:pointer;
-
+ color:white
+ text-decoration:none;
+ font-family:Arial,sans-serif;
+ 
 border-radius:12px;
+padding-left:15px;
+z-index: 999;
+cursor:pointer;
 
 transition:
 transform 0.08s ease,
@@ -500,33 +504,25 @@ id="bulb">
 <!-- CHOICES -->
 
 <a class="choice-a" href="https://gromain000.github.io/Gromain/">
- A.P
+
+<span class="choice-letter">A.</span>
+<span class="choice-answer">P</span>
+ 
 </a>
 
 <a class="choice-b" href="https://gromain000.github.io/Gromain/">
- B.Q
+
+ <span class="choice-letter">B.</span>
+ <span class="choice-answer">Q</span>
+ 
 </a>
 
 <a class="choice-c" href="Q2.html">
- C.U
+
+<span class="choice-letter">C.</span>
+<span class="choice-answer">U</span>
+ 
 </a>
-
-<div class="choice-text">
-
-    <div class="choice-line">
-        <span class="choice-letter">A.</span>
-        <span class="choice-answer">P</span>
-    </div>
-
-    <div class="choice-line">
-        <span class="choice-letter">B.</span>
-        <span class="choice-answer">Q</span>
-    </div>
-
-    <div class="choice-line">
-        <span class="choice-letter">C.</span>
-        <span class="choice-answer">U</span>
-    </div>
 
 </div>
   
