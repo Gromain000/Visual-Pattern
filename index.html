@@ -15,7 +15,7 @@
 
 <style>
 
-/* Question TEXT */
+/* Alphabet TEXT */
 
 .sequence{
 position:absolute;
@@ -32,15 +32,13 @@ font-weight:900;
 
 letter-spacing:clamp(3px,2vw,6px);
  
-margin-bottom:15px;
-
 color:white;
 
 z-index: 999;
  
 }
 
-/* Question TEXT MOBILE */
+/* Alphabet TEXT MOBILE */
 
 @media (max-width: 768px){
  
@@ -59,8 +57,6 @@ font-weight:900;
 
 letter-spacing:clamp(2px,2vw,4px);
  
-margin-bottom:15px;
-
 color:white;
 
 z-index: 999;
@@ -69,20 +65,7 @@ z-index: 999;
 
 } 
 
-.choice-letter{
-font-size:18px;
-font-weight: 200;
-margin-right:10px;
-}
-
-.choice-answer{
-font-size:18px;
-font-weight: 1000;
-}
-
-/* CHOICE TEXT MOBILE */
- 
-@media (max-width: 768px){
+/* CHOICE TEXT */
   
 .choice-text{
 position:absolute;
@@ -117,7 +100,7 @@ margin-right:10px;
 font-size:18px;
 font-weight: 1000;
 }
-
+ 
 }
  
 *{
@@ -184,7 +167,7 @@ filter:brightness(0.72) contrast(1.08);
 pointer-events:none;
 }
 
-/* QUESTION */
+/* QUESTION Text */
 
 .question-text{
 position:absolute;
@@ -215,7 +198,7 @@ border-radius:8px;
 z-index:100;
 }
 
-/* CHOICES */
+/* CHOICES INBOXES */
 
 .choice-a,
 .choice-b,
@@ -246,7 +229,7 @@ background 0.15s ease,
 box-shadow 0.15s ease;
 }
 
-/* HOVER EFFECT */
+/* INBOX HOVER EFFECT */
 
 .choice-a:hover,
 .choice-b:hover,
@@ -259,7 +242,7 @@ box-shadow:
 
 }
 
-/* TAP EFFECT */
+/* INBOX TAP EFFECT */
 
 .choice-a:active,
 .choice-b:active,
@@ -271,7 +254,7 @@ background:rgba(255,255,255,0.12);
 
 }
 
-/* CHOICE Setting */
+/* CHOICE INBOX Setting */
  
 .choice-a{
 left:14%;
@@ -327,8 +310,6 @@ z-index:9999;
 
 cursor:pointer;
 
-/* TEMP TEST */
-
 border-radius:50%;
 }
 
@@ -364,7 +345,7 @@ opacity:1;
 pointer-events:auto;
 }
 
-/* BOX */
+/* POP-UP BOX */
 
 .popup-box{
 
@@ -390,7 +371,7 @@ padding-top:30px;
 
 }
 
-/* SIDE LINE */
+/* POP-UP SIDE LINE */
 
 .popup-box::after{
 
@@ -407,7 +388,7 @@ height:108%;
 background:white;
 }
 
-/* TITLE */
+/* POP-UP TITLE */
 
 .popup-title{
 
@@ -420,7 +401,7 @@ font-size:clamp(42px,5vw,62px);
 margin-bottom:55px;
 }
 
-/* TEXT */
+/* POP-UP TEXT */
 
 .popup-text{
 
