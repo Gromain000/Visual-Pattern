@@ -198,21 +198,30 @@ border-radius:8px;
 z-index:100;
 }
 
-/* CHOICES */
+ /* CHOICES INBOXES */
 
 .choice-a,
 .choice-b,
 .choice-c{
 position:absolute;
 
+left:17.5%;
+top:49.5%;
+ 
+ display:flex;
+ align-items:center;
+
 width:28%;
 height:6%;
 
-z-index:200;
-
-cursor:pointer;
-
+ color:white;
+ text-decoration:none;
+ font-family:Arial,sans-serif;
+ 
 border-radius:12px;
+padding-left:15px;
+z-index: 999;
+cursor:pointer;
 
 transition:
 transform 0.08s ease,
@@ -220,7 +229,7 @@ background 0.15s ease,
 box-shadow 0.15s ease;
 }
 
-/* HOVER EFFECT */
+/* INBOX HOVER EFFECT */
 
 .choice-a:hover,
 .choice-b:hover,
@@ -233,7 +242,7 @@ box-shadow:
 
 }
 
-/* TAP EFFECT */
+/* INBOX TAP EFFECT */
 
 .choice-a:active,
 .choice-b:active,
@@ -245,19 +254,42 @@ background:rgba(255,255,255,0.12);
 
 }
 
+/* CHOICE INBOX Setting */
+ 
 .choice-a{
-left:2%;
-top:48%;
+left:14%;
+top:47.5%;
 }
 
 .choice-b{
-left:2%;
-top:54%;
+left:14%;
+top:54.5%;
 }
 
 .choice-c{
-left:2%;
-top:60%;
+left:14%;
+top:61%;
+}
+
+/* CHOICE Setting MOBILE */
+ 
+@media (max-width: 768px){
+ 
+.choice-a{
+left:14%;
+top:47.5%;
+}
+
+.choice-b{
+left:14%;
+top:54.5%;
+}
+
+.choice-c{
+left:14%;
+top:61%;
+}
+
 }
 
 /* LIGHTBULB */
