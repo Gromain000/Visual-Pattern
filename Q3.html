@@ -19,44 +19,73 @@
 
 .riddle{
 position:absolute;
+
 display:flex;
+
 flex-direction:column;
+
 top:20.3%;
+
 left:23.5%;
+
 font-size:25px;
+
 font-family:Arial;
+
 letter-spacing:0px;
+
 white-space:pre-line;
+
 color:white;
+
 z-index:999;
 }
 
 @media (max-width: 768px){
+
 .riddle{
 position:absolute;
+
 display:flex;
+
 top:20.3%;
+
 left:23.5%;
+
 font-size:13px;
+
 font-family:Arial;
+
 letter-spacing:0px;
+
 color:white;
+
 z-index:999;
 }
-.line{ display:block; }
+
+.line{
+display:block;
+}
+
 }
 
 /* CHOICE TEXT */
   
 .choice-text{
 position:absolute;
+
 left:17.5%;
 top:48%;
+
 display:flex;
 flex-direction:column;
+
 gap:4px;
-z-index:100;
+
+z-index: 100;
+
 color:white;
+
 font-family:Arial,sans-serif;
 }
 
@@ -67,22 +96,16 @@ align-items:center;
 
 .choice-letter{
 font-size:18px;
-font-weight:200;
+font-weight: 200;
 margin-right:10px;
-
-/* SHIFT LEFT INSIDE BOX */
-position:relative;
-left:-4px;
 }
 
 .choice-answer{
 font-size:18px;
-font-weight:1000;
-position:relative;
-left:-2px;
+font-weight: 1000;
 }
-
-/* RESET */
+ 
+ 
 *{
 margin:0;
 padding:0;
@@ -100,6 +123,7 @@ body{
 display:flex;
 justify-content:center;
 align-items:flex-start;
+
 padding-top:55px;
 }
 
@@ -111,12 +135,31 @@ right:10px;
 z-index:999999;
 }
 
+.goog-te-gadget{
+font-size:12px !important;
+}
+
+.goog-te-gadget span{
+display:none;
+}
+
+.goog-te-combo{
+background:#111;
+color:#fff;
+border:1px solid #333;
+padding:6px;
+border-radius:6px;
+}
+
 /* FRAME */
+
 .frame{
 position:relative;
 width:min(88vw,88vh);
 aspect-ratio:1/1;
 }
+
+/* IMAGE */
 
 .frame img{
 width:100%;
@@ -129,83 +172,146 @@ pointer-events:none;
 
 /* CHOICES INBOXES */
 
-/* moved slightly LOWER: +2% each */
 .choice-a,
 .choice-b,
 .choice-c{
 position:absolute;
+
 left:17.5%;
 top:57%;
-display:flex;
-align-items:center;
+ 
+ display:flex;
+ align-items:center;
+
 width:28%;
 height:6%;
-color:white;
-text-decoration:none;
-font-family:Arial,sans-serif;
+
+ color:white;
+ text-decoration:none;
+ font-family:Arial,sans-serif;
+ 
 border-radius:12px;
 padding-left:15px;
-z-index:999;
+z-index: 999;
 cursor:pointer;
-transition:transform 0.08s ease,
+
+transition:
+transform 0.08s ease,
 background 0.15s ease,
 box-shadow 0.15s ease;
 }
 
-/* hover */
+/* INBOX HOVER EFFECT */
+
 .choice-a:hover,
 .choice-b:hover,
 .choice-c:hover{
+
 background:rgba(255,255,255,0.05);
-box-shadow:0 0 12px rgba(255,255,255,0.18);
+
+box-shadow:
+0 0 12px rgba(255,255,255,0.18);
+
 }
 
-/* active */
+/* INBOX TAP EFFECT */
+
 .choice-a:active,
 .choice-b:active,
 .choice-c:active{
+
 transform:scale(0.95);
+
 background:rgba(255,255,255,0.12);
+
 }
 
-/* individual positioning (also slightly lower) */
-.choice-a{ top:55%; }
-.choice-b{ top:62%; }
-.choice-c{ top:69%; }
+/* CHOICE INBOX Setting */
 
-/* MOBILE */
-@media (max-width: 768px){
-.choice-a{ left:15.5%; top:51.5%; }
-.choice-b{ left:15.5%; top:58.5%; }
-.choice-c{ left:15.5%; top:65.5%; }
-}
-
-/* LIGHTBULB */
-.lightbulb-hitbox{
+.choice-a{
 position:absolute;
+left:17.5%;
+top:53%;
+}
+
+.choice-b{
+position:absolute;
+left:17.5%;
+top:60%;
+}
+
+.choice-c{
+position:absolute;
+left:17.5%;
+top:67%;
+}
+
+/* CHOICE Setting MOBILE */
+
+@media (max-width: 768px){
+
+.choice-a{
+left:15.5%;
+top:49.5%;
+}
+
+.choice-b{
+left:15.5%;
+top:56.5%;
+}
+
+.choice-c{
+left:15.5%;
+top:63.5%;
+}
+
+}
+ 
+/* LIGHTBULB */
+
+.lightbulb-hitbox{
+
+position:absolute;
+
+/* CHANGE THESE IF NEEDED */
+
 top:0%;
 right:14%;
+
 width:12%;
 height:12%;
+
 z-index:9999;
+
 cursor:pointer;
+
 border-radius:50%;
 }
 
 /* POPUP */
+
 .popup-overlay{
+
 position:fixed;
+
 top:0;
 left:0;
+
 width:100%;
 height:100%;
+
 background:rgba(0,0,0,0.82);
+
 display:flex;
+
 justify-content:center;
 align-items:center;
+
 opacity:0;
 pointer-events:none;
+
 transition:0.25s;
+
 z-index:999999;
 }
 
@@ -214,42 +320,76 @@ opacity:1;
 pointer-events:auto;
 }
 
+/* POP-UP BOX */
+
 .popup-box{
+
 position:relative;
+
 width:min(78vw,520px);
+
 aspect-ratio:1/1;
+
 background:black;
+
 border:8px solid white;
+
 border-radius:28px;
+
 display:flex;
+
 flex-direction:column;
+
 align-items:center;
+
 padding-top:30px;
+
 }
 
+/* POP-UP SIDE LINE */
+
 .popup-box::after{
+
 content:"";
+
 position:absolute;
+
 right:-12px;
 top:-14px;
+
 width:2px;
 height:108%;
+
 background:white;
 }
 
+/* POP-UP TITLE */
+
 .popup-title{
+
 color:white;
+
 font-family:'UnifrakturCook', cursive;
+
 font-size:clamp(42px,5vw,62px);
+
 margin-bottom:55px;
 }
 
+/* POP-UP TEXT */
+
 .popup-text{
+
 width:80%;
+
 text-align:center;
+
 color:white;
+
 font-family:'Special Elite', monospace;
+
 font-size:clamp(16px,2vw,26px);
+
 line-height:1.5;
 }
 
@@ -259,12 +399,16 @@ line-height:1.5;
 
 <body>
 
+<!-- GOOGLE TRANSLATE -->
 <div id="google_translate_element"></div>
 
 <script>
 function googleTranslateElementInit() {
   new google.translate.TranslateElement(
-    { pageLanguage: 'en', autoDisplay: false },
+    {
+      pageLanguage: 'en',
+      autoDisplay: false
+    },
     'google_translate_element'
   );
 }
@@ -284,49 +428,94 @@ function googleTranslateElementInit() {
  <div style="height:20px;"></div>
  <div class="line">WHAT AM I ?</div>
 </div>
+ 
+<!-- BULB CLICK -->
 
-<div class="lightbulb-hitbox" id="bulb"></div>
+<div
+class="lightbulb-hitbox"
+id="bulb">
+</div>
+
+<!-- CHOICES -->
 
 <a class="choice-a" href="https://gromain000.github.io/Gromain/">
+
 <span class="choice-letter">1.</span>
 <span class="choice-answer">THUNDER</span>
+ 
 </a>
 
 <a class="choice-b" href="https://gromain000.github.io/Gromain/">
-<span class="choice-letter">2.</span>
-<span class="choice-answer">SOUND</span>
+
+ <span class="choice-letter">2.</span>
+ <span class="choice-answer">SOUND</span>
+ 
 </a>
 
 <a class="choice-c" href="#">
+
 <span class="choice-letter">3.</span>
 <span class="choice-answer">ECHO</span>
+ 
 </a>
 
 </div>
+  
+</div>
 
-<div class="popup-overlay" id="popup">
-<div class="popup-box" id="popupBox">
-<div class="popup-title">Clue</div>
+<!-- POPUP -->
+
+<div
+class="popup-overlay"
+id="popup">
+
+<div
+class="popup-box"
+id="popupBox">
+
+<div class="popup-title">
+Clue
+</div>
+
 <div class="popup-text">
 The socond voice is born only after the first is cast into the void 
 </div>
+
 </div>
+
 </div>
 
 <script>
-const bulb = document.getElementById("bulb");
-const popup = document.getElementById("popup");
-const popupBox = document.getElementById("popupBox");
+
+const bulb =
+document.getElementById("bulb");
+
+const popup =
+document.getElementById("popup");
+
+const popupBox =
+document.getElementById("popupBox");
+
+/* OPEN */
 
 bulb.onclick = function(){
+
 popup.classList.add("active");
+
 };
 
+/* CLOSE OUTSIDE */
+
 popup.onclick = function(e){
+
 if(!popupBox.contains(e.target)){
+
 popup.classList.remove("active");
+
 }
+
 };
+
 </script>
 
 </body>
