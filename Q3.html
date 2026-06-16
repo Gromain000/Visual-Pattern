@@ -1,97 +1,390 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Puzzle</title>
+
+<title>Sequence Quiz</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=UnifrakturCook:wght@700&display=swap" rel="stylesheet">
 
 <style>
 
-*{
-    box-sizing:border-box;
-    margin:0;
-    padding:0;
+/* Alphabet TEXT */
+
+.sequence{
+position:absolute;
+
+display:flex;
+ 
+top:29.8%;
+
+left:38%;
+
+font-size:30px;
+ 
+font-weight:900;
+
+letter-spacing:clamp(2px,2vw,3px);
+ 
+color:white;
+
+z-index: 999;
+ 
 }
 
-html, body{
-    width:100%;
-    height:100%;
-    background:#000;
-    overflow:hidden;
+/* Alphabet TEXT MOBILE */
+
+@media (max-width: 768px){
+ 
+.sequence{
+position:absolute;
+
+display:flex;
+ 
+top:29.8%;
+
+left:33%;
+
+font-size:18px;
+ 
+font-weight:900;
+
+letter-spacing:clamp(2px,2vw,3px);
+ 
+color:white;
+
+z-index: 999;
+ 
+}
+
+} 
+
+/* CHOICE TEXT */
+  
+.choice-text{
+position:absolute;
+
+left:17.5%;
+top:48%;
+
+display:flex;
+flex-direction:column;
+
+gap:4px;
+
+z-index: 100;
+
+color:white;
+
+font-family:Arial,sans-serif;
+}
+
+.choice-line{
+display:flex;
+align-items:center;
+}
+
+.choice-letter{
+font-size:18px;
+font-weight: 200;
+margin-right:10px;
+}
+
+.choice-answer{
+font-size:18px;
+font-weight: 1000;
+}
+ 
+}
+ 
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+html,body{
+width:100%;
+height:100%;
+background:black;
+overflow:hidden;
 }
 
 body{
-    display:flex;
-    justify-content:center;
-    align-items:center;
+display:flex;
+justify-content:center;
+align-items:flex-start;
+
+padding-top:55px;
 }
 
-/* FRAME — only seam fix added */
+/* GOOGLE TRANSLATE */
+#google_translate_element{
+position:fixed;
+top:10px;
+right:10px;
+z-index:999999;
+}
+
+.goog-te-gadget{
+font-size:12px !important;
+}
+
+.goog-te-gadget span{
+display:none;
+}
+
+.goog-te-combo{
+background:#111;
+color:#fff;
+border:1px solid #333;
+padding:6px;
+border-radius:6px;
+}
+
+/* FRAME */
+
 .frame{
-    width:min(96vw,96vh);
-    aspect-ratio:1/1;
-    position:relative;
-    overflow:hidden;
-    background:#000;
-
-    isolation:isolate;
+position:relative;
+width:min(88vw,88vh);
+aspect-ratio:1/1;
 }
+
+/* IMAGE */
 
 .frame img{
-    width:100%;
-    height:100%;
-    object-fit:contain;
-    display:block;
-
-    user-select:none;
-    -webkit-user-drag:none;
-
-    filter: brightness(0.72) contrast(1.08);
-
-    transform: translateZ(0);
+width:100%;
+height:100%;
+object-fit:contain;
+display:block;
+filter:brightness(0.72) contrast(1.08);
+pointer-events:none;
 }
 
-/* invisible overlay to kill edge artifact */
-.frame::after{
-    content:"";
-    position:absolute;
-    top:0;
-    left:0;
-    width:100%;
-    height:100%;
-    pointer-events:none;
-    box-shadow: inset 0 0 0 1px #000;
+/* CHOICES INBOXES */
+
+.choice-a,
+.choice-b,
+.choice-c{
+position:absolute;
+
+left:17.5%;
+top:49.5%;
+ 
+ display:flex;
+ align-items:center;
+
+width:28%;
+height:6%;
+
+ color:white;
+ text-decoration:none;
+ font-family:Arial,sans-serif;
+ 
+border-radius:12px;
+padding-left:15px;
+z-index: 999;
+cursor:pointer;
+
+transition:
+transform 0.08s ease,
+background 0.15s ease,
+box-shadow 0.15s ease;
 }
 
-/* CHOICES */
+/* INBOX HOVER EFFECT */
 
-.choices{
-    position:absolute;
-    left:4.5%;
-    bottom:15%;
-    display:flex;
-    flex-direction:column;
-    gap:28px;
-    color:#fff;
-    font-family:Arial,sans-serif;
-    z-index:2;
+.choice-a:hover,
+.choice-b:hover,
+.choice-c:hover{
+
+background:rgba(255,255,255,0.05);
+
+box-shadow:
+0 0 12px rgba(255,255,255,0.18);
+
 }
 
-.choice{
-    display:flex;
-    align-items:center;
+/* INBOX TAP EFFECT */
+
+.choice-a:active,
+.choice-b:active,
+.choice-c:active{
+
+transform:scale(0.95);
+
+background:rgba(255,255,255,0.12);
+
 }
 
-.letter{
-    font-size:30px;
-    font-weight:300;
-    margin-right:12px;
+/* CHOICE INBOX Setting */
+ 
+.choice-a{
+left:14%;
+top:47.5%;
 }
 
-.answer{
-    font-size:30px;
-    font-weight:700;
-    letter-spacing:1px;
+.choice-b{
+left:14%;
+top:54.5%;
+}
+
+.choice-c{
+left:14%;
+top:61%;
+}
+
+/* CHOICE Setting MOBILE */
+ 
+@media (max-width: 768px){
+ 
+.choice-a{
+left:14%;
+top:47.5%;
+}
+
+.choice-b{
+left:14%;
+top:54.5%;
+}
+
+.choice-c{
+left:14%;
+top:61%;
+}
+
+}
+ 
+/* LIGHTBULB */
+
+.lightbulb-hitbox{
+
+position:absolute;
+
+/* CHANGE THESE IF NEEDED */
+
+top:0%;
+right:14%;
+
+width:12%;
+height:12%;
+
+z-index:9999;
+
+cursor:pointer;
+
+border-radius:50%;
+}
+
+/* POPUP */
+
+.popup-overlay{
+
+position:fixed;
+
+top:0;
+left:0;
+
+width:100%;
+height:100%;
+
+background:rgba(0,0,0,0.82);
+
+display:flex;
+
+justify-content:center;
+align-items:center;
+
+opacity:0;
+pointer-events:none;
+
+transition:0.25s;
+
+z-index:999999;
+}
+
+.popup-overlay.active{
+opacity:1;
+pointer-events:auto;
+}
+
+/* POP-UP BOX */
+
+.popup-box{
+
+position:relative;
+
+width:min(78vw,520px);
+
+aspect-ratio:1/1;
+
+background:black;
+
+border:8px solid white;
+
+border-radius:28px;
+
+display:flex;
+
+flex-direction:column;
+
+align-items:center;
+
+padding-top:30px;
+
+}
+
+/* POP-UP SIDE LINE */
+
+.popup-box::after{
+
+content:"";
+
+position:absolute;
+
+right:-12px;
+top:-14px;
+
+width:2px;
+height:108%;
+
+background:white;
+}
+
+/* POP-UP TITLE */
+
+.popup-title{
+
+color:white;
+
+font-family:'UnifrakturCook', cursive;
+
+font-size:clamp(42px,5vw,62px);
+
+margin-bottom:55px;
+}
+
+/* POP-UP TEXT */
+
+.popup-text{
+
+width:80%;
+
+text-align:center;
+
+color:white;
+
+font-family:'Special Elite', monospace;
+
+font-size:clamp(16px,2vw,26px);
+
+line-height:1.5;
 }
 
 </style>
@@ -100,30 +393,124 @@ body{
 
 <body>
 
+<!-- GOOGLE TRANSLATE -->
+<div id="google_translate_element"></div>
+
+<script>
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement(
+    {
+      pageLanguage: 'en',
+      autoDisplay: false
+    },
+    'google_translate_element'
+  );
+}
+</script>
+
+<script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
 <div class="frame">
 
-    <img src="images/IMG_0003.JPG">
+<img src="images/IMG_0003.JPG">
 
-    <div class="choices">
+<div class="sequence"> 
+I SPEAK WITHOUT A MOUTH,
+I HEAR WITHOUT EARS,
+I HAVE NO BODY BUT I COME 
+ALIVE WITH THE WIND 
 
-        <div class="choice">
-            <span class="letter">A.</span>
-            <span class="answer">THUNDER</span>
-        </div>
+WHAT AM I ?
+</div>
+ 
+<!-- BULB CLICK -->
 
-        <div class="choice">
-            <span class="letter">B.</span>
-            <span class="answer">SOUND</span>
-        </div>
+<div
+class="lightbulb-hitbox"
+id="bulb">
+</div>
 
-        <div class="choice">
-            <span class="letter">C.</span>
-            <span class="answer">ECHO</span>
-        </div>
+<!-- CHOICES -->
 
-    </div>
+<a class="choice-a" href="https://gromain000.github.io/Gromain/">
+
+<span class="choice-letter">1.</span>
+<span class="choice-answer">THUNDER</span>
+ 
+</a>
+
+<a class="choice-b" href="https://gromain000.github.io/Gromain/">
+
+ <span class="choice-letter">2.</span>
+ <span class="choice-answer">SOUND</span>
+ 
+</a>
+
+<a class="choice-c" href="Q2.html">
+
+<span class="choice-letter">3.</span>
+<span class="choice-answer">ECHO</span>
+ 
+</a>
 
 </div>
+  
+</div>
+
+<!-- POPUP -->
+
+<div
+class="popup-overlay"
+id="popup">
+
+<div
+class="popup-box"
+id="popupBox">
+
+<div class="popup-title">
+Clue
+</div>
+
+<div class="popup-text">
+The socond voice is born only after the first is cast into the void 
+</div>
+
+</div>
+
+</div>
+
+<script>
+
+const bulb =
+document.getElementById("bulb");
+
+const popup =
+document.getElementById("popup");
+
+const popupBox =
+document.getElementById("popupBox");
+
+/* OPEN */
+
+bulb.onclick = function(){
+
+popup.classList.add("active");
+
+};
+
+/* CLOSE OUTSIDE */
+
+popup.onclick = function(e){
+
+if(!popupBox.contains(e.target)){
+
+popup.classList.remove("active");
+
+}
+
+};
+
+</script>
 
 </body>
 </html>
