@@ -21,6 +21,8 @@
 position:absolute;
 
 display:flex;
+
+flex-direction:column;
  
 top:20%;
 
@@ -40,6 +42,11 @@ z-index: 999;
  
 }
 
+.line{
+display:block; 
+
+}
+ 
 /* Riddle TEXT MOBILE */
 
 @media (max-width: 768px){
@@ -417,11 +424,11 @@ function googleTranslateElementInit() {
 <img src="images/IMG_0003.JPG">
 
 <div class="riddle"> 
-I SPEAK WITHOUT A MOUTH,
-I HEAR WITHOUT EARS,
-I HAVE NO BODY BUT I COME
-ALIVE WITH THE WIND
-WHAT AM I ?
+ <div class="line" data-key="I SPEAK WITHOUT A MOUTH,"></div>
+ <div class="line" data-key="I HEAR WITHOUT EARS,"></div>
+ <div class="line" data-key="I HAVE NO BODY BUT I COME"></div>
+ <div class="line" data-key="ALIVE WITH THE WIND"></div>
+ <div class="line" data-key="WHAT AM I ?"></div>
 </div>
  
 <!-- BULB CLICK -->
