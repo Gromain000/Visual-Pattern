@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Question 1</title>
+</head>
+<body>
+
+<h1>I speak without a mouth and hear without ears. What am I?</h1>
+
+<input type="text" id="answer" placeholder="Type your answer">
+<button onclick="checkAnswer()">Submit</button>
+
+<script>
+function checkAnswer() {
+    let answer = document.getElementById("answer").value
+        .trim()
+        .toLowerCase();
+
+    if (answer === "echo") {
+        window.location.href = "question2.html";
+    } else {
+        window.location.href = "wrong.html";
+    }
+}
+</script>
+
+</body>
+</html>
