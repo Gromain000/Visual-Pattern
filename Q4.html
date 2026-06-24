@@ -1,25 +1,150 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Question 1</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quiz</title>
+
+<style>
+body{
+    margin:0;
+    background:black;
+    color:white;
+    font-family:Arial,sans-serif;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    min-height:100vh;
+}
+
+.lightbulb{
+    position:absolute;
+    top:40px;
+    right:40px;
+    font-size:70px;
+    color:white;
+}
+
+.question{
+    margin-top:250px;
+    text-align:center;
+    font-size:32px;
+    line-height:1.8;
+}
+
+.answerRow{
+    margin-top:180px;
+    display:flex;
+    gap:30px;
+    align-items:center;
+}
+
+.answerBox{
+    width:320px;
+    height:70px;
+    background:white;
+    border-radius:18px;
+    color:black;
+    font-size:40px;
+    text-align:center;
+    border:none;
+    outline:none;
+}
+
+.delete{
+    width:70px;
+    height:70px;
+    background:#af7385;
+    border:3px solid white;
+    border-radius:10px;
+    color:white;
+    font-size:50px;
+    cursor:pointer;
+}
+
+.keypad{
+    margin-top:35px;
+    display:grid;
+    grid-template-columns:repeat(3,80px);
+    gap:25px;
+}
+
+.key{
+    width:80px;
+    height:80px;
+    font-size:55px;
+    border:none;
+    border-radius:8px;
+    background:#eee;
+    cursor:pointer;
+}
+
+.zero{
+    grid-column:2;
+}
+
+.submit{
+    margin-top:100px;
+    width:240px;
+    height:80px;
+    border:none;
+    border-radius:30px;
+    background:#95c93d;
+    cursor:pointer;
+}
+</style>
 </head>
 <body>
 
-<h1>I speak without a mouth and hear without ears. What am I?</h1>
+<div class="lightbulb">💡</div>
 
-<input type="text" id="answer" placeholder="Type your answer">
-<button onclick="checkAnswer()">Submit</button>
+<div class="question">
+    John is 10, his brother is half his age<br><br>
+    If John is 30 years old, how old is John's brother
+</div>
+
+<div class="answerRow">
+    <input class="answerBox" id="answer" readonly>
+    <button class="delete" onclick="erase()">X</button>
+</div>
+
+<div class="keypad">
+    <button class="key" onclick="addNumber(1)">1</button>
+    <button class="key" onclick="addNumber(2)">2</button>
+    <button class="key" onclick="addNumber(3)">3</button>
+
+    <button class="key" onclick="addNumber(4)">4</button>
+    <button class="key" onclick="addNumber(5)">5</button>
+    <button class="key" onclick="addNumber(6)">6</button>
+
+    <button class="key" onclick="addNumber(7)">7</button>
+    <button class="key" onclick="addNumber(8)">8</button>
+    <button class="key" onclick="addNumber(9)">9</button>
+
+    <button class="key zero" onclick="addNumber(0)">0</button>
+</div>
+
+<button class="submit" onclick="checkAnswer()"></button>
 
 <script>
-function checkAnswer() {
-    let answer = document.getElementById("answer").value
-        .trim()
-        .toLowerCase();
+function addNumber(num){
+    document.getElementById("answer").value += num;
+}
 
-    if (answer === "echo") {
-        window.location.href = "question2.html";
-    } else {
-        window.location.href = "wrong.html";
+function erase(){
+    let box = document.getElementById("answer");
+    box.value = box.value.slice(0,-1);
+}
+
+function checkAnswer(){
+    let answer = document.getElementById("answer").value;
+
+    if(answer === "25"){
+        alert("Correct!");
+        // window.location.href = "nextpage.html";
+    }
+    else{
+        alert("Wrong answer.");
     }
 }
 </script>
