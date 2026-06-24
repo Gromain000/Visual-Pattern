@@ -16,28 +16,56 @@
 <style>
 
 /* NUMBER TEXT */
+ 
+.number-box{
 
-.number{
 position:absolute;
 
+top:26.6%;
+left:50%;
+
+transform:translateX(-50%);
+
+width:50%;
+height:12%;
+
+background:#3e3e3e;
+
+border-radius:10px;
+
 display:flex;
- 
-top:29.8%;
+align-items:center;
+justify-content:center;
 
-left:35.5%;
+overflow:hidden;
 
-font-size:30px;
- 
-font-weight:900;
-
-letter-spacing:clamp(2px,2vw,3px);
- 
-color:white;
-
-z-index: 999;
- 
+z-index:999;
 }
 
+.number-text{
+
+position:absolute;
+
+width:90%;
+
+text-align:center;
+
+color:white;
+
+font-size:clamp(18px,2vw,30px);
+
+font-weight:900;
+
+white-space:nowrap;
+
+overflow:hidden;
+
+text-overflow:clip;
+
+line-height:1;
+ 
+}
+ 
 /* NUMBER TEXT MOBILE */
 
 @media (max-width: 768px){
@@ -453,8 +481,8 @@ src="images/IMG_0002.JPG"
 FIND THE NEXT NUMBER
 </div>
 
-<div class="sequence-box">
- <div class="sequence-text">
+<div class="number-box">
+ <div class="number-text">
   2,6,7,21,22,66,_
  </div>
 </div>
