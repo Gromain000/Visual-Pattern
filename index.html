@@ -21,50 +21,75 @@ display:block;
 }  
 
 /* Alphabet TEXT */
+ 
+.sequence-box{
 
-.sequence{
 position:absolute;
 
+top:26.6%;
+left:50%;
+
+transform:translateX(-50%);
+
+width:50%;
+height:8%;
+
+background:#3e3e3e;
+
+border-radius:16px;
+
 display:flex;
- 
-top:29.8%;
+align-items:center;
+justify-content:center;
 
-left:38%;
+overflow:hidden;
 
-font-size:30px;
- 
-font-weight:900;
- 
+z-index:999;
+}
+
+.sequence-text{
+
+position:absolute;
+
+width:90%;
+
+text-align:center;
+
 color:white;
 
-z-index: 999;
+font-size:clamp(18px,2vw,30px);
+
+font-weight:900;
+
+white-space:nowrap;
+
+overflow:hidden;
+
+text-overflow:clip;
+
+line-height:1;
  
 }
 
-/* Alphabet TEXT MOBILE */
+@media (max-width:768px){
 
-@media (max-width: 768px){
- 
-.sequence{
-position:absolute;
+.sequence-box{
 
-display:flex;
- 
-top:29.8%;
+top:26.6%;
 
-left:33%;
+width:54%;
+
+height:7.8%;
+
+}
+
+.sequence-text{
 
 font-size:18px;
- 
-font-weight:900;
- 
-color:white;
 
-z-index: 999;
- 
 }
 
-} 
+}
 
 /* CHOICE TEXT */
   
@@ -448,12 +473,15 @@ src="images/IMG_0001.JPG"
 >
 
 <div class="question-text">
-<div class="line">WHAT COMES NEXT IN SEQUENCE</div>
+ <div class="line">WHAT COMES NEXT IN SEQUENCE</div>
 </div>
 
-<div class="sequence"> 
- A,&#8203;C,&#8203;F,&#8203;J,&#8203;O,_&#8203;
+<div class="sequence-box">
+    <div class="sequence-text">
+       A,C,F,J,O,_
  </div>
+
+</div>
  
 <!-- BULB CLICK -->
 
