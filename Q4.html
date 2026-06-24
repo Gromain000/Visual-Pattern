@@ -1,35 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Quiz</title>
+
+<title> Quiz</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=UnifrakturCook:wght@700&display=swap" rel="stylesheet">
 
 <style>
-body{
-    margin:0;
-    background:black;
-    color:white;
-    font-family:Arial,sans-serif;
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    min-height:100vh;
-}
-
-.lightbulb{
-    position:absolute;
-    top:40px;
-    right:40px;
-    font-size:70px;
-    color:white;
-}
-
-.question{
-    margin-top:250px;
-    text-align:center;
-    font-size:32px;
-    line-height:1.8;
+ 
+.line{
+display:block;
 }
 
 .answerRow{
@@ -92,15 +79,261 @@ body{
     background:#95c93d;
     cursor:pointer;
 }
+    
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+html,body{
+width:100%;
+height:100%;
+background:black;
+overflow:hidden;
+}
+
+body{
+display:flex;
+justify-content:center;
+align-items:flex-start;
+
+padding-top:55px;
+}
+
+/* GOOGLE TRANSLATE */
+#google_translate_element{
+position:fixed;
+top:10px;
+right:10px;
+z-index:999999;
+}
+
+.goog-te-gadget{
+font-size:12px !important;
+}
+
+.goog-te-gadget span{
+display:none;
+}
+
+.goog-te-combo{
+background:#111;
+color:#fff;
+border:1px solid #333;
+padding:6px;
+border-radius:6px;
+}
+
+/* FRAME */
+
+.frame{
+position:relative;
+width:min(88vw,88vh);
+aspect-ratio:1/1;
+}
+
+/* IMAGE */
+
+.frame img{
+width:100%;
+height:100%;
+object-fit:contain;
+display:block;
+filter:brightness(0.72) contrast(1.08);
+pointer-events:none;
+}
+
+/* QUESTION Text */
+
+.question-text{
+position:absolute;
+
+top:14%;
+left:50%;
+
+transform:translateX(-50%);
+
+width:99%;
+
+text-align:center;
+
+color:white;
+
+font-size:clamp(13px,2vw,20px);
+
+font-family:Arial;
+
+letter-spacing:2px;
+
+background:black;
+
+padding:8px 14px;
+
+border-radius:8px;
+
+z-index:100;
+}
+
+/* LIGHTBULB */
+
+.lightbulb-hitbox{
+
+position:absolute;
+
+/* CHANGE THESE IF NEEDED */
+
+top:0%;
+right:14%;
+
+width:12%;
+height:12%;
+
+z-index:9999;
+
+cursor:pointer;
+
+border-radius:50%;
+}
+
+/* POPUP */
+
+.popup-overlay{
+
+position:fixed;
+
+top:0;
+left:0;
+
+width:100%;
+height:100%;
+
+background:rgba(0,0,0,0.82);
+
+display:flex;
+
+justify-content:center;
+align-items:center;
+
+opacity:0;
+pointer-events:none;
+
+transition:0.25s;
+
+z-index:999999;
+}
+
+.popup-overlay.active{
+opacity:1;
+pointer-events:auto;
+}
+
+/* POP-UP BOX */
+
+.popup-box{
+
+position:relative;
+
+width:min(78vw,520px);
+
+aspect-ratio:1/1;
+
+background:black;
+
+border:8px solid white;
+
+border-radius:28px;
+
+display:flex;
+
+flex-direction:column;
+
+align-items:center;
+
+padding-top:30px;
+
+}
+
+/* POP-UP SIDE LINE */
+
+.popup-box::after{
+
+content:"";
+
+position:absolute;
+
+right:-12px;
+top:-14px;
+
+width:2px;
+height:108%;
+
+background:white;
+}
+
+/* POP-UP TITLE */
+
+.popup-title{
+
+color:white;
+
+font-family:'UnifrakturCook', cursive;
+
+font-size:clamp(42px,5vw,62px);
+
+margin-bottom:55px;
+}
+
+/* POP-UP TEXT */
+
+.popup-text{
+
+width:80%;
+
+text-align:center;
+
+color:white;
+
+font-family:'Special Elite', monospace;
+
+font-size:clamp(16px,2vw,26px);
+
+line-height:1.5;
+}
+
 </style>
+
 </head>
+
 <body>
 
-<div class="lightbulb">💡</div>
+<!-- GOOGLE TRANSLATE -->
+<div id="google_translate_element"></div>
 
-<div class="question">
-    John is 10, his brother is half his age<br><br>
-    If John is 30 years old, how old is John's brother
+<script>
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement(
+    {
+      pageLanguage: 'en',
+      autoDisplay: false
+    },
+    'google_translate_element'
+  );
+}
+</script>
+
+<script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+<div class="frame">
+
+<img
+src="images/IMG_0004.JPG"
+>
+
+<div class="question-text">
+<div class="line">John is 10, his brother is half his age</div>
+<div style="height:20px;"></div>
+<div class="line">If John is 30 years old, how old is John's brother</div>
 </div>
 
 <div class="answerRow">
@@ -147,6 +380,69 @@ function checkAnswer(){
         alert("Wrong answer.");
     }
 }
+    
+<!-- BULB CLICK -->
+
+<div
+class="lightbulb-hitbox"
+id="bulb">
+</div>
+
+</div>
+
+<!-- POPUP -->
+
+<div
+class="popup-overlay"
+id="popup">
+
+<div
+class="popup-box"
+id="popupBox">
+
+<div class="popup-title">
+Clue
+</div>
+
+<div class="popup-text">
+Each step beareth a weight greater than that which comes before it
+</div>
+
+</div>
+
+</div>
+
+<script>
+
+const bulb =
+document.getElementById("bulb");
+
+const popup =
+document.getElementById("popup");
+
+const popupBox =
+document.getElementById("popupBox");
+
+/* OPEN */
+
+bulb.onclick = function(){
+
+popup.classList.add("active");
+
+};
+
+/* CLOSE OUTSIDE */
+
+popup.onclick = function(e){
+
+if(!popupBox.contains(e.target)){
+
+popup.classList.remove("active");
+
+}
+
+};
+
 </script>
 
 </body>
