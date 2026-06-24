@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title> Quiz</title>
+<title>Quiz</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,7 +14,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=UnifrakturCook:wght@700&display=swap" rel="stylesheet">
 
 <style>
- 
+
 .line{
 display:block;
 }
@@ -79,7 +79,7 @@ display:block;
     background:#95c93d;
     cursor:pointer;
 }
-    
+
 *{
 margin:0;
 padding:0;
@@ -97,11 +97,11 @@ body{
 display:flex;
 justify-content:center;
 align-items:flex-start;
-
 padding-top:55px;
 }
 
 /* GOOGLE TRANSLATE */
+
 #google_translate_element{
 position:fixed;
 top:10px;
@@ -144,82 +144,53 @@ filter:brightness(0.72) contrast(1.08);
 pointer-events:none;
 }
 
-/* QUESTION Text */
+/* QUESTION TEXT */
 
 .question-text{
 position:absolute;
-
 top:14%;
 left:50%;
-
 transform:translateX(-50%);
-
 width:99%;
-
 text-align:center;
-
 color:white;
-
 font-size:clamp(13px,2vw,20px);
-
 font-family:Arial;
-
 letter-spacing:2px;
-
 background:black;
-
 padding:8px 14px;
-
 border-radius:8px;
-
 z-index:100;
 }
 
 /* LIGHTBULB */
 
 .lightbulb-hitbox{
-
 position:absolute;
-
-/* CHANGE THESE IF NEEDED */
-
 top:0%;
 right:14%;
-
 width:12%;
 height:12%;
-
 z-index:9999;
-
 cursor:pointer;
-
 border-radius:50%;
 }
 
 /* POPUP */
 
 .popup-overlay{
-
 position:fixed;
-
 top:0;
 left:0;
-
 width:100%;
 height:100%;
-
 background:rgba(0,0,0,0.82);
-
 display:flex;
-
 justify-content:center;
 align-items:center;
-
 opacity:0;
 pointer-events:none;
-
 transition:0.25s;
-
 z-index:999999;
 }
 
@@ -228,76 +199,50 @@ opacity:1;
 pointer-events:auto;
 }
 
-/* POP-UP BOX */
+/* POPUP BOX */
 
 .popup-box{
-
 position:relative;
-
 width:min(78vw,520px);
-
 aspect-ratio:1/1;
-
 background:black;
-
 border:8px solid white;
-
 border-radius:28px;
-
 display:flex;
-
 flex-direction:column;
-
 align-items:center;
-
 padding-top:30px;
-
 }
 
-/* POP-UP SIDE LINE */
+/* SIDE LINE */
 
 .popup-box::after{
-
 content:"";
-
 position:absolute;
-
 right:-12px;
 top:-14px;
-
 width:2px;
 height:108%;
-
 background:white;
 }
 
-/* POP-UP TITLE */
+/* TITLE */
 
 .popup-title{
-
 color:white;
-
 font-family:'UnifrakturCook', cursive;
-
 font-size:clamp(42px,5vw,62px);
-
 margin-bottom:55px;
 }
 
-/* POP-UP TEXT */
+/* TEXT */
 
 .popup-text{
-
 width:80%;
-
 text-align:center;
-
 color:white;
-
 font-family:'Special Elite', monospace;
-
 font-size:clamp(16px,2vw,26px);
-
 line-height:1.5;
 }
 
@@ -308,6 +253,7 @@ line-height:1.5;
 <body>
 
 <!-- GOOGLE TRANSLATE -->
+
 <div id="google_translate_element"></div>
 
 <script>
@@ -326,9 +272,7 @@ function googleTranslateElementInit() {
 
 <div class="frame">
 
-<img
-src="images/IMG_0004.JPG"
->
+<img src="images/IMG_0004.JPG">
 
 <div class="question-text">
 <div class="line">John is 10, his brother is half his age</div>
@@ -337,50 +281,28 @@ src="images/IMG_0004.JPG"
 </div>
 
 <div class="answerRow">
-    <input class="answerBox" id="answer" readonly>
-    <button class="delete" onclick="erase()">X</button>
+<input class="answerBox" id="answer" readonly>
+<button class="delete" onclick="erase()">X</button>
 </div>
 
 <div class="keypad">
-    <button class="key" onclick="addNumber(1)">1</button>
-    <button class="key" onclick="addNumber(2)">2</button>
-    <button class="key" onclick="addNumber(3)">3</button>
+<button class="key" onclick="addNumber(1)">1</button>
+<button class="key" onclick="addNumber(2)">2</button>
+<button class="key" onclick="addNumber(3)">3</button>
 
-    <button class="key" onclick="addNumber(4)">4</button>
-    <button class="key" onclick="addNumber(5)">5</button>
-    <button class="key" onclick="addNumber(6)">6</button>
+<button class="key" onclick="addNumber(4)">4</button>
+<button class="key" onclick="addNumber(5)">5</button>
+<button class="key" onclick="addNumber(6)">6</button>
 
-    <button class="key" onclick="addNumber(7)">7</button>
-    <button class="key" onclick="addNumber(8)">8</button>
-    <button class="key" onclick="addNumber(9)">9</button>
+<button class="key" onclick="addNumber(7)">7</button>
+<button class="key" onclick="addNumber(8)">8</button>
+<button class="key" onclick="addNumber(9)">9</button>
 
-    <button class="key zero" onclick="addNumber(0)">0</button>
+<button class="key zero" onclick="addNumber(0)">0</button>
 </div>
 
 <button class="submit" onclick="checkAnswer()"></button>
 
-<script>
-function addNumber(num){
-    document.getElementById("answer").value += num;
-}
-
-function erase(){
-    let box = document.getElementById("answer");
-    box.value = box.value.slice(0,-1);
-}
-
-function checkAnswer(){
-    let answer = document.getElementById("answer").value;
-
-    if(answer === "25"){
-        alert("Correct!");
-        // window.location.href = "nextpage.html";
-    }
-    else{
-        alert("Wrong answer.");
-    }
-}
-    
 <!-- BULB CLICK -->
 
 <div
@@ -413,6 +335,27 @@ Each step beareth a weight greater than that which comes before it
 </div>
 
 <script>
+
+function addNumber(num){
+    document.getElementById("answer").value += num;
+}
+
+function erase(){
+    let box = document.getElementById("answer");
+    box.value = box.value.slice(0,-1);
+}
+
+function checkAnswer(){
+    let answer = document.getElementById("answer").value;
+
+    if(answer === "25"){
+        alert("Correct!");
+        // window.location.href = "nextpage.html";
+    }
+    else{
+        alert("Wrong answer.");
+    }
+}
 
 const bulb =
 document.getElementById("bulb");
