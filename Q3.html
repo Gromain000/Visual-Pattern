@@ -15,52 +15,73 @@
 
 <style>
 
-/* Riddle TEXT */
+.sequence-box{
 
-.riddle{
 position:absolute;
 
+top:26.6%;
+left:50%;
+
+transform:translateX(-50%);
+
+width:50%;
+height:8%;
+
+background:#3e3e3e;
+
+border-radius:16px;
+
 display:flex;
+align-items:center;
+justify-content:center;
 
-flex-direction:column;
-
-top:20.3%;
-
-left:22%;
-
-font-size:20px;
-
-font-family:Arial;
-
-letter-spacing:0px;
-
-white-space:pre-line;
-
-color:white;
+overflow:hidden;
 
 z-index:999;
 }
 
-@media (max-width: 768px){
+.sequence-text{
 
-.riddle{
 position:absolute;
 
-display:flex;
+width:90%;
 
-top:20.3%;
-
-left:20%;
-
-font-size:12px;
-
-font-family:Arial;
-
-letter-spacing:0px;
+text-align:center;
 
 color:white;
 
-z-index:999;
+font-size:clamp(18px,2vw,30px);
+
+font-weight:900;
+
+white-space:nowrap;
+
+overflow:hidden;
+
+text-overflow:clip;
+
+line-height:1;
+
+}
+
+@media (max-width:768px){
+
+.sequence-box{
+
+top:26.6%;
+
+width:54%;
+
+height:7.8%;
+
+}
+
+.sequence-text{
+
+font-size:18px;
+
+}
+
 }
 
 .line{
