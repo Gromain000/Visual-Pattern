@@ -1,92 +1,293 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Find The Next Number</title>
+
+<title>Personal Quiz</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=UnifrakturCook:wght@700&display=swap" rel="stylesheet">
 
 <style>
 
-.cube-link {
-  text-decoration: none;
+.choice-container{
+    display:flex;
+    justify-content:center;
+    gap:80px;
+    flex-wrap:wrap;
 }
 
-.cube {
-  width: 150px;
-  height: 150px;
-  background: #555;
-  color: white;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  border-radius: 10px;
-  cursor: pointer;
-
-  transition: transform 0.2s ease;
-}
-
-.cube:hover {
-  transform: scale(1.05);
-}
-    
-*{
+.choice-card{
+    width:240px;
+    min-height:320px;
+    background:#5b5b5b;
+    border:4px solid #bdbdbd;
+    color:black;
+    text-decoration:none;
+    padding:18px;
     box-sizing:border-box;
-    margin:0;
-    padding:0;
+    transition:.2s ease;
 }
 
-html, body{
-    width:100%;
-    height:100%;
-    background:#000;
-    overflow:hidden;
+.choice-card:hover{
+    transform:scale(1.05);
+    border-color:white;
+    cursor:pointer;
+}
+
+.choice-card h2{
+    margin:0 0 20px;
+    font-size:42px;
+    font-weight:300;
+}
+
+.choice-card p{
+    font-size:20px;
+    line-height:1.3;
+}
+
+.choice-card span{
+    display:block;
+    margin-top:20px;
+    font-style:italic;
+    color:#dcdcdc;
+}
+
+.choice-card strong{
+    color:white;
+    text-decoration:underline;
+}  
+
+}  
+
+
+ 
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+html,body{
+width:100%;
+height:100%;
+background:black;
+overflow:hidden;
 }
 
 body{
-    display:flex;
-    justify-content:center;
-    align-items:center;
+display:flex;
+justify-content:center;
+align-items:flex-start;
+
+padding-top:55px;
 }
 
-/* FRAME — only seam fix added */
+/* GOOGLE TRANSLATE */
+#google_translate_element{
+position:fixed;
+top:10px;
+right:10px;
+z-index:999999;
+}
+
+.goog-te-gadget{
+font-size:12px !important;
+}
+
+.goog-te-gadget span{
+display:none;
+}
+
+.goog-te-combo{
+background:#111;
+color:#fff;
+border:1px solid #333;
+padding:6px;
+border-radius:6px;
+}
+
+/* FRAME */
+
 .frame{
-    width:min(96vw,96vh);
-    aspect-ratio:1/1;
-    position:relative;
-    overflow:hidden;
-    background:#000;
-
-    /* 🔥 fixes 1px seam without affecting image */
-    isolation:isolate;
+position:relative;
+width:min(88vw,88vh);
+aspect-ratio:1/1;
 }
+
+/* IMAGE */
 
 .frame img{
-    width:100%;
-    height:100%;
-    object-fit:contain;
-    display:block;
-
-    user-select:none;
-    -webkit-user-drag:none;
-
-    filter: brightness(0.72) contrast(1.08);
-
-    /* 🔥 prevents rendering gaps */
-    transform: translateZ(0);
+width:100%;
+height:100%;
+object-fit:contain;
+display:block;
+filter:brightness(0.72) contrast(1.08);
+pointer-events:none;
 }
 
-/* 🔥 invisible overlay to kill edge artifact */
-.frame::after{
-    content:"";
-    position:absolute;
-    top:0;
-    left:0;
-    width:100%;
-    height:100%;
-    pointer-events:none;
-    box-shadow: inset 0 0 0 1px #000;
+/* QUESTION Text */
+
+.question-text{
+position:absolute;
+
+top:14%;
+left:50%;
+
+transform:translateX(-50%);
+
+width:99%;
+
+text-align:center;
+
+color:white;
+
+font-size:clamp(13px,2vw,20px);
+
+font-family:Arial;
+
+letter-spacing:2px;
+
+background:black;
+
+padding:8px 14px;
+
+border-radius:8px;
+
+z-index:100;
+}
+
+
+ 
+/* LIGHTBULB */
+
+.lightbulb-hitbox{
+
+position:absolute;
+
+/* CHANGE THESE IF NEEDED */
+
+top:0%;
+right:14%;
+
+width:12%;
+height:12%;
+
+z-index:9999;
+
+cursor:pointer;
+
+border-radius:50%;
+}
+
+/* POPUP */
+
+.popup-overlay{
+
+position:fixed;
+
+top:0;
+left:0;
+
+width:100%;
+height:100%;
+
+background:rgba(0,0,0,0.82);
+
+display:flex;
+
+justify-content:center;
+align-items:center;
+
+opacity:0;
+pointer-events:none;
+
+transition:0.25s;
+
+z-index:999999;
+}
+
+.popup-overlay.active{
+opacity:1;
+pointer-events:auto;
+}
+
+/* POP-UP BOX */
+
+.popup-box{
+
+position:relative;
+
+width:min(78vw,520px);
+
+aspect-ratio:1/1;
+
+background:black;
+
+border:8px solid white;
+
+border-radius:28px;
+
+display:flex;
+
+flex-direction:column;
+
+align-items:center;
+
+padding-top:30px;
+
+}
+
+/* POP-UP SIDE LINE */
+
+.popup-box::after{
+
+content:"";
+
+position:absolute;
+
+right:-12px;
+top:-14px;
+
+width:2px;
+height:108%;
+
+background:white;
+}
+
+/* POP-UP TITLE */
+
+.popup-title{
+
+color:white;
+
+font-family:'UnifrakturCook', cursive;
+
+font-size:clamp(42px,5vw,62px);
+
+margin-bottom:55px;
+}
+
+/* POP-UP TEXT */
+
+.popup-text{
+
+width:80%;
+
+text-align:center;
+
+color:white;
+
+font-family:'Special Elite', monospace;
+
+font-size:clamp(16px,2vw,26px);
+
+line-height:1.5;
 }
 
 </style>
@@ -95,9 +296,132 @@ body{
 
 <body>
 
+<!-- GOOGLE TRANSLATE -->
+<div id="google_translate_element"></div>
+
+<script>
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement(
+    {
+      pageLanguage: 'en',
+      autoDisplay: false
+    },
+    'google_translate_element'
+  );
+}
+</script>
+
+<script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
 <div class="frame">
-    <img src="images/IMG_5.jpeg">
+
+<img
+src="images/IMG_0001.JPG"
+>
+
+<div class="question-text">
+ <div class="line">ARE YOU RATHER:</div>
 </div>
+
+</div>
+ 
+<!-- BULB CLICK -->
+
+<div
+class="lightbulb-hitbox"
+id="bulb">
+</div>
+
+<!-- CHOICES -->
+
+<div class="choice-container">
+
+  <a href="audatious.html" class="choice-card">
+    <h2>AUDATIOUS</h2>
+
+    <p>
+      Curious<br>
+      & Reflective<br>
+      Critical<br>
+      & Analytical Thinker
+    </p>
+
+    <span>Somewhat:</span>
+    <strong>INQUIRER</strong>
+  </a>
+
+  <a href="creduious.html" class="choice-card">
+    <h2>CREDUIOUS</h2>
+
+    <p>
+      Believes/trusts most subjects readily<br>
+      With Prosper<br>
+      &<br>
+      With or without evidence
+    </p>
+
+    <span>Somewhat:</span>
+    <strong>NAIVE</strong>
+  </a>
+
+</div>
+  
+</div>
+
+<!-- POPUP -->
+
+<div
+class="popup-overlay"
+id="popup">
+
+<div
+class="popup-box"
+id="popupBox">
+
+<div class="popup-title">
+Clue
+</div>
+
+<div class="popup-text">
+Each step beareth a weight greater than that which comes before it
+</div>
+
+</div>
+
+</div>
+
+<script>
+
+const bulb =
+document.getElementById("bulb");
+
+const popup =
+document.getElementById("popup");
+
+const popupBox =
+document.getElementById("popupBox");
+
+/* OPEN */
+
+bulb.onclick = function(){
+
+popup.classList.add("active");
+
+};
+
+/* CLOSE OUTSIDE */
+
+popup.onclick = function(e){
+
+if(!popupBox.contains(e.target)){
+
+popup.classList.remove("active");
+
+}
+
+};
+
+</script>
 
 </body>
 </html>
