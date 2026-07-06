@@ -20,6 +20,131 @@
     overflow-y:auto;
     width:100%;
 }
+
+/* LEGIBLE CHOICE BUTTONS */
+
+.choice-a,
+.choice-b{
+
+position:absolute;
+
+width:240px;
+height:320px;
+
+background:#5b5b5b;
+
+border:4px solid #bdbdbd;
+
+border-radius:12px;
+
+text-decoration:none;
+
+display:flex;
+
+flex-direction:column;
+
+align-items:center;
+
+justify-content:flex-start;
+
+padding:24px;
+
+overflow:hidden;
+
+transition:.2s;
+
+color:white;
+
+}
+
+.choice-a{
+
+left:24%;
+top:42%;
+
+}
+
+.choice-b{
+
+left:56%;
+top:42%;
+
+}
+
+.choice-a:hover,
+.choice-b:hover{
+
+transform:scale(1.05);
+
+border-color:white;
+
+}
+
+.choice-title{
+
+font-size:32px;
+
+margin-top:5px;
+
+margin-bottom:18px;
+
+font-weight:300;
+
+text-align:center;
+
+font-family:Arial,sans-serif;
+
+color:black;
+
+}
+
+.choice-body{
+
+font-size:18px;
+
+line-height:1.4;
+
+text-align:left;
+
+color:black;
+
+}
+
+.choice-footer{
+
+margin-top:auto;
+
+text-align:left;
+
+font-size:17px;
+
+}
+
+.somewhat{
+
+font-style:italic;
+
+text-align:left;
+
+}
+
+.choice-footer strong{
+
+text-decoration:underline;
+
+text-align:left;
+
+font-style:normal;
+
+}
+    
+@media (max-width:768px){
+    
+.choice-scroll{
+    height:100%;
+    overflow-y:auto;
+    width:100%;
+}
  
 /* LEGIBLE CHOICE BUTTONS */
 
@@ -137,6 +262,8 @@ font-style:normal;
  
 }
 
+}
+    
 .line{
 display:block;
 } 
