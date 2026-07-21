@@ -301,7 +301,7 @@ color:white;
 
 font-family:Courier New, monospace;
 
-font-size:22px;
+font-size:13px;
 
 line-height:1.8;
 
@@ -649,14 +649,15 @@ id="bulb">
 
    <div id="introMessage" style="display:none;">
 
-     <div class="line">[ SIGNAL DETECTED ]</div>
-
+     <div class="line">[ Via ad Excitationem ]</div>
+       
       <br>
-
-    <div class="line">Only signals deemed relevant receive a response.</div>
-
-    <div class="line">Proceed.</div>
-
+       
+    <div class="line">Verba quae cernuntur te huc duxerunt</div>
+    <div class="line">sed si altiorem perceptionem atque possibilem intellectum desideras</div>
+    <div class="line">scito scientiam non in acie oculorum tui iacere</div>
+    <div class="line">sed in imaginibus quae te secutae sunt per viam quae ad hunc locum te perduxit</div>
+    <div class="line">dum in aperto abscondita manent.</div>   
   </div>
 
 </div>
@@ -728,7 +729,7 @@ const introMessage = document.getElementById("introMessage");
 
 choiceA.addEventListener("click", function(e){
 
-if(localStorage.getItem("introSeen")){
+// if(localStorage.getItem("introSeen")){
 
 return;
 
@@ -758,7 +759,7 @@ else{
 
 introText.innerHTML=text;
 
-localStorage.setItem("introSeen","true");
+// localStorage.setItem("introSeen","true");
 
 setTimeout(function(){
 
