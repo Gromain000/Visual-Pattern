@@ -441,26 +441,6 @@ cursor:pointer;
 
 border-radius:50%;
 }
-
-/* INTRO SCREEN */
-
-<div id="introScreen">
-
- <div id="introText"></div>
-
-   <div id="introMessage" style="display:none;">
-
-     <div class="line">[ SIGNAL DETECTED ]</div>
-
-      <br>
-
-    <div class="line">Only signals deemed relevant receive a response.</div>
-
-    <div class="line">Proceed.</div>
-
-  </div>
-
-</div>
     
 /* POPUP */
 
@@ -609,7 +589,7 @@ id="bulb">
 
 <!-- CHOICES -->
 
-<a class="choice-a" href="https://gromain000.github.io/Gromain/">
+<a class="choice-a" id="choiceA" href="https://gromain000.github.io/Gromain/">
 
   <div class="choice-scroll">
 
@@ -661,6 +641,26 @@ id="bulb">
   
 </div>
 
+<!-- INTRO SCREEN  -->
+
+<div id="introScreen">
+
+ <div id="introText"></div>
+
+   <div id="introMessage" style="display:none;">
+
+     <div class="line">[ SIGNAL DETECTED ]</div>
+
+      <br>
+
+    <div class="line">Only signals deemed relevant receive a response.</div>
+
+    <div class="line">Proceed.</div>
+
+  </div>
+
+</div>
+    
 <!-- POPUP -->
 
 <div
@@ -718,8 +718,6 @@ popup.classList.remove("active");
 
 };
 
-</script>
-
 const choiceA = document.getElementById("choiceA");
 
 const introScreen = document.getElementById("introScreen");
@@ -775,6 +773,8 @@ window.location.href=choiceA.href;
 type();
 
 });
+
+</script>
     
 </body>
 </html>
