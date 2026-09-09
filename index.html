@@ -1,50 +1,121 @@
-<DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
-<head>
-<title>Spider Clock</title>
-<style> body{margin:0;background:#050505; display:flex;justify-content:center;align-items: center;height:100vh}canvas<filter:drop-shadow(0 0 10px#fa0)}<|style>
-</head> <body>
-<canvas id="s" width="600" height="600"></canvas>
+
+<head>	
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0”>
+  <title>Interactive Spider Clock</title>
+
+<style>
+body {
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    min-height: 100vh;
+    margin: 0;
+    background-color: black; 
+    background-repeat: no-repeat;
+    color: #FFF;
+    font-family: Arial, sans-serif;
+} 
+.clock { 
+    position: relative;
+    width: 300px; 
+    height: 300px; 
+    border-radius: 50%;
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+}
+
+/* Clock Numbers Positioning */
+
+.number { 
+    position: absolute; 
+    font-size: 1.2rem;
+    color: #888; 
+    font-weight: bold;
+}
+
+.n12 { top: 10px; }
+.n3 { right: 10px; } 
+.n6 { bottom: 10px; }
+.n9 { left: 10px; }
+
+/* Center Graphic Container */
+
+.spider-center { 
+position: absolute;
+width: 60px; 
+height: 60px;
+background: #ff9900;
+clip-path: polygon(50% 0%, 80% 30%, 100% 70%, 50% 100%, 0% 70%, 20% 30%); z-index: 10;
+}
+
+/* Clock Hands */
+
+.hand{
+position: absolute;
+bottom: 50%;
+transform-origin: bottom center; 
+background-color: #ff9900; 
+border-radius: 
+4px; z-index: 5;
+}
+
+.hour-hand {
+width: 6px; 
+height: 70px;
+}
+
+.minute-hand { 
+width: 4px;
+height: 100px;
+}
+
+.second-hand {
+width: 2px;
+height: 110px;
+background-color: #ff5500;
+}
+
+</style> 
+
+</head> 
+
+<body>
+<div class="clock">
+<div class="number n12"> 12</div> 
+<div class="number n3"> 3</div> 
+<div class="number n6">6</div> 
+<div class="number n9"> 9</div> 
+<div class="spider-center"></div>
+<div class="hand hour-hand" id="hour"></ div>
+<div class="hand minute-hand"
+id="minute"></div>
+<div class="hand second-hand"
+id="second"></div>
+</div>
+
 <script>
 
-const
-x=document.getElementByld('s') getContext(
-'2d'),P=Math.Pl,C=Math.cos,S=Math.sin,R=3
-00;
-const
-L=(a,l,w,c,b)=>{x.strokeStyle=c;x.lineWidth= w;x.lineCap=x.lineJoin='round';let
-a1=a+b,a2=a-b*5;x.beginPath();x.moveTo(R,R);x.lineTo(R+ C(a1)*|*.3, R+S(a1)*|*.3);x.lineTo(R+C(a2)*/*.7,R +S(a2)*(*7);x.lineTo(R+C(a)*1, R+S(a)*l);x.stro
-const D=()=>{x.clearRect(0,0,600,600);let d=new Date (),s=d.getSeconds()
-+d.getMilliseconds()/1e3,m=d.getMinutes()
-+s/60,h=d.getHours()%12+m/60,sA=s*P/30-
-P/2, mA=m*P/30-P/2,hA=h*P/6-P/
-2;x. strokeStyle='rgba(255,165,0, .15)';x.lineWi dth=1;x.save ();x.translate(R,R);x.rotate(s*.5);f or (let j=0;j<3;j++) {let
-r=50+j*40;x.beginPath();for(let i=O;i<12;i+ ‡)x[ị?"lineTo':moveTo](C(i*P/6)*†;S(i*P/
+function updateClock() {
+const now = new Date();
+const seconds = now.getSeconds();
+const minutes = now.getMinutes();
+const hours = now.getHours();
+const secondDeg = seconds * 6;
+const minuteDeg = minutes * 6 + seconds *
+0.1;
+const hourDeg = (hours % 12) * 30 + minutes * 0.5;
+document.getElementByld("second").style.transform = 'translateX(-50%)rotate( {secondDeg} deg)';
+document.getElementByld("minute").style.transform ='translateX(-50%) rotate (${minuteDeg} deg);
+document.getElementByld("hour") .style.transform ='translateX(-50%) rotate (${hourDeg}deg) ;
+setlnterval(updateClock, 1000); updateClock();
 
-6)*r);x.closePath();x.stroke()}for(let
-i=0;i<12;i++)
-{x.beginPath();x.moveTo(0,0);x.lineTo(C(i*P/
-6)*130, S(i*P/6)*130);.stroke ()}
-x.restore();x.fillStyle='rgba(255,165,0,.7)';x.fo
-nt='bold 30px
-Arial';x.textAlign='center";x.textBaseline='mid
-dle';for(let i=1;i<=12;i++)x.fillText(i,R+C(i*P/6-
-P/2)*240, R+S(i*P/6-P/
-2) *240); L(P,130,3, #b36b00',
-- 5); L(P+.6,120,
-3, #b36b00,
-- 3);L (P-.6,140,3, #b36b00', -4);
-L(-.2,130,3,'#b36b00',.5);L(.4,120,3, #b36b0
-0',.3);L (hA, 100,7, #faO', 4);L (mA, 160,5, #fa0',-.
-4);L (sA,190,2, #f40', 2);x.fillStyle=x.shadowC
-olor='#fa0';x.shadowBlur=15;x.beginPath();x
-ellipse(R, R+10,20,35,0,0, P* 2);x.fill ();x.beginP
-ath);.arc(R,R-20,15,0, P*2);x.fill ();x.beginPat
-h();.moveTo(R-5, R-35);x.lineTo (R-10, R-45);x
-•moveTo(R+5, R-35);x.lineTo(R+10,R-45);x.line
-Width=3;.stroke ();x.shadowBlur=0;requestA
-nimationFrame(D)};
-D();
+});
+
 </script>
+    
 </body>
 </html>
