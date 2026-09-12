@@ -1,121 +1,134 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>	
+<head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0”>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Interactive Spider Clock</title>
+  <style>
 
-<style>
-body {
-    display: flex;
-    justify-content: center; 
-    align-items: center; 
-    min-height: 100vh;
-    margin: 0;
-    background-color: black; 
-    background-repeat: no-repeat;
-    color: #FFF;
-    font-family: Arial, sans-serif;
-} 
-.clock { 
-    position: relative;
-    width: 300px; 
-    height: 300px; 
-    border-radius: 50%;
-    display: flex;
-    justify-content: center; 
-    align-items: center;
-}
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+      background-color: black;
+      color: #FFF;
+      font-family: Arial, sans-serif;
+    }
 
-/* Clock Numbers Positioning */
+    .clock {
+      position: relative;
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
 
-.number { 
-    position: absolute; 
-    font-size: 1.2rem;
-    color: #888; 
-    font-weight: bold;
-}
+    /* Clock Numbers Positioning */
 
-.n12 { top: 10px; }
-.n3 { right: 10px; } 
-.n6 { bottom: 10px; }
-.n9 { left: 10px; }
+    .number {
+      position: absolute;
+      font-size: 1.2rem;
+      color: #888;
+      font-weight: bold;
+    }
 
-/* Center Graphic Container */
+    .n12 { top: 10px; }
+    .n3 { right: 10px; }
+    .n6 { bottom: 10px; }
+    .n9 { left: 10px; }
 
-.spider-center { 
-position: absolute;
-width: 60px; 
-height: 60px;
-background: #ff9900;
-clip-path: polygon(50% 0%, 80% 30%, 100% 70%, 50% 100%, 0% 70%, 20% 30%); z-index: 10;
-}
+    /* Center Graphic Container */
 
-/* Clock Hands */
+    .spider-center {
+      position: absolute;
+      width: 60px;
+      height: 60px;
+      background: #ff9900;
+      clip-path: polygon(
+        50% 0%,
+        80% 30%,
+        100% 70%,
+        50% 100%,
+        0% 70%,
+        20% 30%
+      );
+      z-index: 10;
+    }
 
-.hand{
-position: absolute;
-bottom: 50%;
-transform-origin: bottom center; 
-background-color: #ff9900; 
-border-radius: 
-4px; z-index: 5;
-}
+    /* Clock Hands */
 
-.hour-hand {
-width: 6px; 
-height: 70px;
-}
+    .hand {
+      position: absolute;
+      bottom: 50%;
+      transform-origin: bottom center;
+      background-color: #ff9900;
+      border-radius: 4px;
+      z-index: 5;
+    }
 
-.minute-hand { 
-width: 4px;
-height: 100px;
-}
+    .hour-hand {
+      width: 6px;
+      height: 70px;
+    }
 
-.second-hand {
-width: 2px;
-height: 110px;
-background-color: #ff5500;
-}
+    .minute-hand {
+      width: 4px;
+      height: 100px;
+    }
 
-</style> 
+    .second-hand {
+      width: 2px;
+      height: 110px;
+      background-color: #ff5500;
+    }
 
-</head> 
-
+  </style>
+</head>
 <body>
-<div class="clock">
-<div class="number n12"> 12</div> 
-<div class="number n3"> 3</div> 
-<div class="number n6">6</div> 
-<div class="number n9"> 9</div> 
+  <div class="clock">
+<div class="number n12">12</div>
+<div class="number n3">3</div>
+<div class="number n6">6</div>
+<div class="number n9">9</div>
+
 <div class="spider-center"></div>
-<div class="hand hour-hand" id="hour"></ div>
-<div class="hand minute-hand"
-id="minute"></div>
-<div class="hand second-hand"
-id="second"></div>
-</div>
 
-<script>
+<div class="hand hour-hand" id="hour"></div>
+<div class="hand minute-hand" id="minute"></div>
+<div class="hand second-hand" id="second"></div>
+  </div>
+  <script>
 
-function updateClock() {
-const now = new Date();
-const seconds = now.getSeconds();
-const minutes = now.getMinutes();
-const hours = now.getHours();
-const secondDeg = seconds * 6;
-const minuteDeg = minutes * 6 + seconds *
-0.1;
-const hourDeg = (hours % 12) * 30 + minutes * 0.5;
-document.getElementByld("second").style.transform = 'translateX(-50%)rotate( {secondDeg} deg)';
-document.getElementByld("minute").style.transform ='translateX(-50%) rotate (${minuteDeg} deg);
-document.getElementByld("hour") .style.transform ='translateX(-50%) rotate (${hourDeg}deg) ;
-setlnterval(updateClock, 1000); updateClock();
+    function updateClock() {
 
-});
+      const now = new Date();
 
-</script>
-    
+      const seconds = now.getSeconds();
+      const minutes = now.getMinutes();
+      const hours = now.getHours();
+
+      const secondDeg = seconds * 6;
+      const minuteDeg = minutes * 6 + seconds * 0.1;
+      const hourDeg = (hours % 12) * 30 + minutes * 0.5;
+
+      document.getElementById("second").style.transform =
+        `translateX(-50%) rotate(${secondDeg}deg)`;
+
+      document.getElementById("minute").style.transform =
+        `translateX(-50%) rotate(${minuteDeg}deg)`;
+
+      document.getElementById("hour").style.transform =
+        `translateX(-50%) rotate(${hourDeg}deg)`;
+
+    }
+
+    updateClock();
+    setInterval(updateClock, 1000);
+
+  </script>
 </body>
 </html>
