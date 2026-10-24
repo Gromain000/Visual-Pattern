@@ -1,134 +1,581 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Interactive Spider Clock</title>
-  <style>
 
-    body {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-      margin: 0;
-      background-color: black;
-      color: #FFF;
-      font-family: Arial, sans-serif;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    .clock {
-      position: relative;
-      width: 300px;
-      height: 300px;
-      border-radius: 50%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
+<title>Sequence Quiz</title>
 
-    /* Clock Numbers Positioning */
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    .number {
-      position: absolute;
-      font-size: 1.2rem;
-      color: #888;
-      font-weight: bold;
-    }
+<link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=UnifrakturCook:wght@700&display=swap" rel="stylesheet">
 
-    .n12 { top: 10px; }
-    .n3 { right: 10px; }
-    .n6 { bottom: 10px; }
-    .n9 { left: 10px; }
+<style>
 
-    /* Center Graphic Container */
+ .line{
+display:block;  
 
-    .spider-center {
-      position: absolute;
-      width: 60px;
-      height: 60px;
-      background: #ff9900;
-      clip-path: polygon(
-        50% 0%,
-        80% 30%,
-        100% 70%,
-        50% 100%,
-        0% 70%,
-        20% 30%
-      );
-      z-index: 10;
-    }
+}  
 
-    /* Clock Hands */
+/* Alphabet TEXT */
+ 
+.sequence-box{
 
-    .hand {
-      position: absolute;
-      bottom: 50%;
-      transform-origin: bottom center;
-      background-color: #ff9900;
-      border-radius: 4px;
-      z-index: 5;
-    }
+position:absolute;
 
-    .hour-hand {
-      width: 6px;
-      height: 70px;
-    }
+top:26.6%;
+left:50%;
 
-    .minute-hand {
-      width: 4px;
-      height: 100px;
-    }
+transform:translateX(-50%);
 
-    .second-hand {
-      width: 2px;
-      height: 110px;
-      background-color: #ff5500;
-    }
+width:50%;
+height:10%;
 
-  </style>
+background:#3e3e3e;
+
+border-radius:10px;
+
+display:flex;
+align-items:center;
+justify-content:center;
+
+overflow:hidden;
+
+z-index:999;
+}
+
+.sequence-text{
+
+position:absolute;
+
+width:90%;
+
+text-align:center;
+
+color:white;
+
+font-size:clamp(18px,2vw,30px);
+
+font-weight:900;
+
+white-space:nowrap;
+
+overflow:hidden;
+
+text-overflow:clip;
+
+line-height:1;
+ 
+}
+
+@media (max-width:768px){
+
+.sequence-box{
+
+top:26.6%;
+
+width:54%;
+
+height:10%;
+
+}
+
+.sequence-text{
+
+font-size:18px;
+
+}
+
+}
+
+/* CHOICE TEXT */
+  
+.choice-text{
+position:absolute;
+
+left:17.5%;
+top:48%;
+
+display:flex;
+flex-direction:column;
+
+gap:4px;
+
+z-index: 100;
+
+color:white;
+
+}
+
+.choice-line{
+display:flex;
+align-items:center;
+}
+
+.choice-letter{
+font-size:clamp(18px,2vw,20px);
+font-weight: 200;
+white-space:nowrap;
+}
+
+.choice-answer{
+font-size:clamp(18px,2vw,20px);
+font-weight: 999;
+white-space:nowrap; 
+}
+ 
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+html,body{
+width:100%;
+height:100%;
+background:black;
+overflow:hidden;
+}
+
+body{
+display:flex;
+justify-content:center;
+align-items:flex-start;
+
+padding-top:55px;
+}
+
+/* GOOGLE TRANSLATE */
+#google_translate_element{
+position:fixed;
+top:10px;
+right:10px;
+z-index:999999;
+}
+
+.goog-te-gadget{
+font-size:12px !important;
+}
+
+.goog-te-gadget span{
+display:none;
+}
+
+.goog-te-combo{
+background:#111;
+color:#fff;
+border:1px solid #333;
+padding:6px;
+border-radius:6px;
+}
+
+/* FRAME */
+
+.frame{
+position:relative;
+width:min(88vw,88vh);
+aspect-ratio:1/1;
+}
+
+/* IMAGE */
+
+.frame img{
+width:100%;
+height:100%;
+object-fit:contain;
+display:block;
+filter:brightness(0.72) contrast(1.08);
+pointer-events:none;
+}
+
+/* QUESTION Text */
+
+.question-text{
+position:absolute;
+
+top:14%;
+left:50%;
+
+transform:translateX(-50%);
+
+width:99%;
+
+text-align:center;
+
+color:white;
+
+font-size:clamp(13px,2vw,20px);
+
+font-family:Arial;
+
+letter-spacing:2px;
+
+background:black;
+
+padding:8px 14px;
+
+border-radius:8px;
+
+z-index:100;
+}
+
+/* CHOICES INBOXES */
+
+.choice-a,
+.choice-b,
+.choice-c {
+  position: absolute;
+
+  left: 14%;
+  width: fit-content;
+  max-width:80%;
+  height: 6%;
+
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  text-align: left;
+  padding-left:15px;
+  gap: 8px;
+
+  color: white;
+  text-decoration: none;
+  font-family: Arial, sans-serif;
+
+  border-radius: 12px;
+
+  cursor: pointer;
+
+  box-sizing: border-box;
+
+  overflow: hidden;
+ 
+  transition: 
+  transform 0.08s ease,
+  background 0.15s ease,
+  box-shadow 0.15s ease;
+}
+ 
+/* INBOX HOVER EFFECT */
+
+.choice-a:hover,
+.choice-b:hover,
+.choice-c:hover{
+
+background:rgba(255,255,255,0.05);
+
+box-shadow:
+0 0 12px rgba(255,255,255,0.18);
+
+}
+
+/* INBOX TAP EFFECT */
+
+.choice-a:active,
+.choice-b:active,
+.choice-c:active{
+
+transform:scale(0.95);
+
+background:rgba(255,255,255,0.12);
+
+}
+
+/* CHOICE INBOX Setting */
+ 
+.choice-a{
+left:14%;
+top:47.5%;
+}
+
+.choice-b{
+left:14%;
+top:54.5%;
+}
+
+.choice-c{
+left:14%;
+top:61%;
+}
+
+/* CHOICE Setting MOBILE */
+ 
+@media (max-width: 768px){
+ 
+.choice-a{
+left:14%;
+top:47.5%;
+}
+
+.choice-b{
+left:14%;
+top:54.5%;
+}
+
+.choice-c{
+left:14%;
+top:61%;
+}
+
+}
+ 
+/* LIGHTBULB */
+
+.lightbulb-hitbox{
+
+position:absolute;
+
+/* CHANGE THESE IF NEEDED */
+
+top:0%;
+right:14%;
+
+width:12%;
+height:12%;
+
+z-index:9999;
+
+cursor:pointer;
+
+border-radius:50%;
+}
+
+/* POPUP */
+
+.popup-overlay{
+
+position:fixed;
+
+top:0;
+left:0;
+
+width:100%;
+height:100%;
+
+background:rgba(0,0,0,0.82);
+
+display:flex;
+
+justify-content:center;
+align-items:center;
+
+opacity:0;
+pointer-events:none;
+
+transition:0.25s;
+
+z-index:999999;
+}
+
+.popup-overlay.active{
+opacity:1;
+pointer-events:auto;
+}
+
+/* POP-UP BOX */
+
+.popup-box{
+
+position:relative;
+
+width:min(78vw,520px);
+
+aspect-ratio:1/1;
+
+background:black;
+
+border:8px solid white;
+
+border-radius:28px;
+
+display:flex;
+
+flex-direction:column;
+
+align-items:center;
+
+padding-top:30px;
+
+}
+
+/* POP-UP SIDE LINE */
+
+.popup-box::after{
+
+content:"";
+
+position:absolute;
+
+right:-12px;
+top:-14px;
+
+width:2px;
+height:108%;
+
+background:white;
+}
+
+/* POP-UP TITLE */
+
+.popup-title{
+
+color:white;
+
+font-family:'UnifrakturCook', cursive;
+
+font-size:clamp(42px,5vw,62px);
+
+margin-bottom:55px;
+}
+
+/* POP-UP TEXT */
+
+.popup-text{
+
+width:80%;
+
+text-align:center;
+
+color:white;
+
+font-family:'Special Elite', monospace;
+
+font-size:clamp(16px,2vw,26px);
+
+line-height:1.5;
+}
+
+</style>
+
 </head>
+
 <body>
-  <div class="clock">
-<div class="number n12">12</div>
-<div class="number n3">3</div>
-<div class="number n6">6</div>
-<div class="number n9">9</div>
 
-<div class="spider-center"></div>
+<!-- GOOGLE TRANSLATE -->
+<div id="google_translate_element"></div>
 
-<div class="hand hour-hand" id="hour"></div>
-<div class="hand minute-hand" id="minute"></div>
-<div class="hand second-hand" id="second"></div>
-  </div>
-  <script>
+<script>
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement(
+    {
+      pageLanguage: 'en',
+      autoDisplay: false
+    },
+    'google_translate_element'
+  );
+}
+</script>
 
-    function updateClock() {
+<script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
-      const now = new Date();
+<div class="frame">
 
-      const seconds = now.getSeconds();
-      const minutes = now.getMinutes();
-      const hours = now.getHours();
+<img
+src="images/IMG_0001.JPG"
+>
 
-      const secondDeg = seconds * 6;
-      const minuteDeg = minutes * 6 + seconds * 0.1;
-      const hourDeg = (hours % 12) * 30 + minutes * 0.5;
+<div class="question-text">
+ <div class="line">WHAT COMES NEXT IN SEQUENCE</div>
+</div>
 
-      document.getElementById("second").style.transform =
-        `translateX(-50%) rotate(${secondDeg}deg)`;
+<div class="sequence-box">
+    <div class="sequence-text">
+       A,C,F,J,O,_
+ </div>
 
-      document.getElementById("minute").style.transform =
-        `translateX(-50%) rotate(${minuteDeg}deg)`;
+</div>
+ 
+<!-- BULB CLICK -->
 
-      document.getElementById("hour").style.transform =
-        `translateX(-50%) rotate(${hourDeg}deg)`;
+<div
+class="lightbulb-hitbox"
+id="bulb">
+</div>
 
-    }
+<!-- CHOICES -->
 
-    updateClock();
-    setInterval(updateClock, 1000);
+<a class="choice-a" href="https://gromain000.github.io/Gromain/">
 
-  </script>
+<span class="choice-letter">1.</span>
+<span class="choice-answer">P</span>
+ 
+</a>
+
+<a class="choice-b" href="https://gromain000.github.io/Gromain/">
+
+ <span class="choice-letter">2.</span>
+ <span class="choice-answer">Q</span>
+ 
+</a>
+
+<a class="choice-c" href="Q2.html">
+
+<span class="choice-letter">3.</span>
+<span class="choice-answer">U</span>
+ 
+</a>
+
+</div>
+  
+</div>
+
+<!-- POPUP -->
+
+<div
+class="popup-overlay"
+id="popup">
+
+<div
+class="popup-box"
+id="popupBox">
+
+<div class="popup-title">
+Clue
+</div>
+
+<div class="popup-text">
+Each step beareth a weight greater than that which comes before it
+</div>
+
+</div>
+
+</div>
+
+<script>
+
+const bulb =
+document.getElementById("bulb");
+
+const popup =
+document.getElementById("popup");
+
+const popupBox =
+document.getElementById("popupBox");
+
+/* OPEN */
+
+bulb.onclick = function(){
+
+popup.classList.add("active");
+
+};
+
+/* CLOSE OUTSIDE */
+
+popup.onclick = function(e){
+
+if(!popupBox.contains(e.target)){
+
+popup.classList.remove("active");
+
+}
+
+};
+
+</script>
+
 </body>
 </html>
